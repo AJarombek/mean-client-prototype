@@ -1,0 +1,32 @@
+<div>
+    <header>
+        <div>
+            <a [routerLink]="['/']">MeowPics</a>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a [routerLink]="['/profile']">Profile</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/about']">About</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/post']">Post</a>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            <div>
+                <a [routerLink]="['/login']">Login</a>
+            </div>
+            <span>  </span>
+            <div>
+                <a [routerLink]="['/signup']">Sign Up</a>
+            </div>
+        </div>
+    </header>
+    <!-- Router Outlet is where the router will render the component -->
+    <router-outlet></router-outlet>
+</div>
+
