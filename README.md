@@ -1,5 +1,7 @@
 # angular-nodejs-mongodb-prototype
 
+[![Build Status](https://travis-ci.org/AJarombek/angular-nodejs-mongodb-prototype.svg?branch=master)](https://travis-ci.org/AJarombek/angular-nodejs-mongodb-prototype)
+
 This is a prototype that uses the Angular 5 framework for the front-end and Node.js for the back-end.  MongoDB is used for 
 the database.
 
