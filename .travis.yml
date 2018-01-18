@@ -8,6 +8,7 @@ before_script:
   - npm install -g @angular/cli
 
 script:
+  - cd web-app
   - npm run test
   - npm run build
 
