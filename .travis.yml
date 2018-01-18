@@ -1,3 +1,13 @@
+sudo: required
+dist: trusty
+
+addons:
+  apt:
+    source:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
 language: node_js
 node_js:
   - '9.2'
