@@ -20,3 +20,6 @@ ng generate component profile/post
 
 # Convert the style sheets to use Sass
 ng set defaults.styleExt scss
+
+# Set up code coverage with coveralls
+npm install karma-coveralls --save-dev
