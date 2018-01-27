@@ -7,15 +7,18 @@ import {HomeComponent} from "./home/home.component";
 import {SignupComponent} from "./signup/signup.component";
 import {LoginComponent} from "./login/login.component";
 import {AboutComponent} from "./about/about.component";
-import {ProfileModule} from "./profile/profile.module";
-import {ProfileComponent} from "./profile/profile.component";
-import {PostComponent} from "./profile/post/post.component";
 
-const routes: Routes = [
+/**
+ * The main module for the application
+ * @author Andrew Jarombek
+ * @since 1/26/2018
+ */
+
+export const routes: Routes = [
     {path: '', component: HomeComponent},
-    {path: 'profile', component: ProfileComponent},
+    {path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
     {path: 'about', component: AboutComponent},
-    {path: 'post', component: PostComponent},
+    {path: 'profile/post', loadChildren: './profile/profile.module#ProfileModule'},
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent}
 ];
@@ -39,7 +42,6 @@ const routes: Routes = [
   ],
   imports: [
       BrowserModule,
-      ProfileModule,
       RouterModule.forRoot(routes)
   ],
   providers: [],

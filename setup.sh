@@ -17,3 +17,6 @@ ng generate component signup
 ng generate module profile
 
 ng generate component profile/post
+
+# Convert the style sheets to use Sass
+ng set defaults.styleExt scss
