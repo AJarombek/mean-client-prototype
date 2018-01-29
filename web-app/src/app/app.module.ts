@@ -26,7 +26,7 @@ export const routes: Routes = [
 /**
  * @NgModule configures an Angular module, helping to organize the application into components
  * In Angular 5 NgModules allow for Ahead-Of-Time Compilation, where the JavaScript and HTML is compiled before
- * the browser runs the code
+ * the code is sent to the client
  * declarations - items used in templates (ex. components, directives)
  * imports - import other modules
  * providers - services used in the module

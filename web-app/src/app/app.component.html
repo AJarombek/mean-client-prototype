@@ -1,31 +1,34 @@
+<!--
+Author: Andrew Jarombek
+Date: 1/28/2018
+Create the HTML for the main page of the web app.  The template uses bootstrap 4
+-->
+
 <div>
-    <header>
-        <div>
-            <a [routerLink]="['/']">MeowPics</a>
-        </div>
-        <nav>
-            <ul>
-                <li>
-                    <a [routerLink]="['/profile']">Profile</a>
-                </li>
-                <li>
-                    <a [routerLink]="['/profile/post']">Post</a>
-                </li>
-                <li>
-                    <a [routerLink]="['/about']">About</a>
-                </li>
-            </ul>
+    <!-- navbar : a wrapper for the bootstrap navigation bar -->
+    <!-- navbar-dark & bg-dark : dark colored styling -->
+    <nav class="navbar navbar-dark bg-dark">
+        <!-- navbar-brand : specify a brand title for the nav -->
+        <a class="navbar-brand" [routerLink]="['/']">MeowPics</a>
+        <!-- Specify the navigation items in the nav bar -->
+        <!-- flex-sm-row : set a horizontal direction for the nav elements children -->
+        <nav class="nav navbar-nav flex-sm-row mx-2">
+            <!-- mx-5 : Specify the margin for each element -->
+            <a class="nav-link mx-5" [routerLink]="['/profile']">Profile</a>
+            <a class="nav-link mx-5" [routerLink]="['/profile/post']">Post</a>
+            <a class="nav-link mx-5" [routerLink]="['/about']">About</a>
         </nav>
-        <div>
-            <div>
+        <div class="nav navbar-nav flex-sm-row">
+            <!-- Define two buttons with bootstrap basic styling -->
+            <div class="btn btn-outline-secondary mx-1" id="login-button">
                 <a [routerLink]="['/login']">Login</a>
             </div>
             <span>  </span>
-            <div>
+            <div class="btn btn-outline-primary mx-1" id="signup-button">
                 <a [routerLink]="['/signup']">Sign Up</a>
             </div>
         </div>
-    </header>
+    </nav>
     <!-- Router Outlet is where the router will render the component -->
     <router-outlet></router-outlet>
 </div>

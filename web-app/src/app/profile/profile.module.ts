@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile.component';
 import { PostComponent } from './post/post.component';
-import {RouterModule} from "@angular/router";
+import { RouterModule } from "@angular/router";
 
 /**
  * Feature module for the pages only available to signed in users

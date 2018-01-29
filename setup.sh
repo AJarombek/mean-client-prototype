@@ -23,3 +23,16 @@ ng set defaults.styleExt scss
 
 # Set up code coverage with coveralls
 npm install karma-coveralls --save-dev
+
+# Create a new tag at the time of the routing and lazy loading discovery.  Push this tag to origin
+git tag -a v0.1 -m "Prototype at time of discovery: Angular 5 Routing & Lazy Loading Modules"
+git push origin v0.1
+
+# Install bootstrap to help style our web pages
+npm install bootstrap --save
+npm install ngx-bootstrap --save
+
+# Fix bug with the newest beta version of bootstrap
+# https://github.com/angular/angular-cli/issues/9020
+npm uninstall bootstrap --save
+npm install bootstrap@4.0.0-beta.2 --save

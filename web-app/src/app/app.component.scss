@@ -1,0 +1,31 @@
+/**
+  Author: Andrew Jarombek
+  Date: 1/28/2018
+  Styles for the main page of the web app
+ */
+
+@mixin button-style {
+  border-radius: 2px;
+  transition: background-color .3s ease;
+  a {
+    color: #fff;
+  }
+}
+
+#login-button {
+  @include button-style;
+  border-color: #aaa;
+}
+
+#signup-button {
+  @include button-style;
+  border-color: #0074D9;
+}
+
+#login-button:hover, #login-button:focus {
+  background-color: #aaa;
+}
+
+#signup-button:hover, #signup-button:focus {
+  background-color: #aaa;
+}
