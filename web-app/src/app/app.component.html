@@ -12,7 +12,8 @@ Create the HTML for the main page of the web app.  The template uses bootstrap 4
         <a class="navbar-brand" [routerLink]="['/']">MeowPics</a>
         <!-- Specify the navigation items in the nav bar -->
         <!-- flex-sm-row : set a horizontal direction for the nav elements children -->
-        <nav class="nav navbar-nav flex-sm-row mx-2">
+        <!-- mr-auto : Set the margin-right to auto -->
+        <nav class="nav navbar-nav flex-sm-row mx-2 mr-auto">
             <!-- mx-5 : Specify the margin for each element -->
             <a class="nav-link mx-5" [routerLink]="['/profile']">Profile</a>
             <a class="nav-link mx-5" [routerLink]="['/profile/post']">Post</a>

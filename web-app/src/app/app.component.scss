@@ -4,6 +4,8 @@
   Styles for the main page of the web app
  */
 
+@import "../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
 @mixin button-style {
   border-radius: 2px;
   transition: background-color .3s ease;
@@ -28,4 +30,12 @@
 
 #signup-button:hover, #signup-button:focus {
   background-color: #aaa;
+}
+
+// On small screens shorten the margin between navigation links
+.nav-link.mx-5 {
+  @include media-breakpoint-only(sm) {
+    margin-left: 20px !important;
+    margin-right: 20px !important;
+  }
 }
