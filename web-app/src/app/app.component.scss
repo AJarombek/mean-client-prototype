@@ -49,10 +49,13 @@
 }
 
 #nav-buttons {
+
+  // In the mobile screen, center both buttons in the navigation pane
   @include media-breakpoint-only(xs) {
     text-align: center;
     margin: 0 auto;
-    width: 190px;
+    width: 196px;
+    padding-left: 10px;
   }
 }
 

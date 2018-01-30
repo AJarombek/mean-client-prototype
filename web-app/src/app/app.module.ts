@@ -7,6 +7,7 @@ import {HomeComponent} from "./home/home.component";
 import {SignupComponent} from "./signup/signup.component";
 import {LoginComponent} from "./login/login.component";
 import {AboutComponent} from "./about/about.component";
+import { CatPictureComponent } from './cat-picture/cat-picture.component';
 
 /**
  * The main module for the application
@@ -38,7 +39,8 @@ export const routes: Routes = [
       HomeComponent,
       AboutComponent,
       LoginComponent,
-      SignupComponent
+      SignupComponent,
+      CatPictureComponent
   ],
   imports: [
       BrowserModule,

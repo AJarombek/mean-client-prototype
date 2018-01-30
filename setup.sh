@@ -36,3 +36,9 @@ npm install ngx-bootstrap --save
 # https://github.com/angular/angular-cli/issues/9020
 npm uninstall bootstrap --save
 npm install bootstrap@4.0.0-beta.2 --save
+
+# Create a new service called 'post' and a mock post for testing
+ng generate service post
+ng generate service mock/mock-post
+
+ng generate component cat-picture
