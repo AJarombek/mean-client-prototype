@@ -32,12 +32,19 @@
 
   @include media-breakpoint-only(sm) {
     width: 68px;
+    font-size: 12px;
   }
 }
 
 #signup-button {
+  width: 110px !important;
   @include button-style;
   border-color: #0074D9;
+
+  @include media-breakpoint-only(sm) {
+    width: 85px !important;
+    font-size: 12px;
+  }
 }
 
 #login-button:hover, #login-button:focus {
@@ -64,7 +71,11 @@
   text-align: center;
 
   @include media-breakpoint-only(sm) {
-    margin-left: 14px !important;
-    margin-right: 14px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
+}
+
+#main-component {
+  background-color: transparent !important;
 }

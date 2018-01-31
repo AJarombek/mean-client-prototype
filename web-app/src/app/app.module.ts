@@ -8,6 +8,8 @@ import {SignupComponent} from "./signup/signup.component";
 import {LoginComponent} from "./login/login.component";
 import {AboutComponent} from "./about/about.component";
 import { CatPictureComponent } from './cat-picture/cat-picture.component';
+import {PostService} from "./post.service";
+import {MockPostService} from "./mock/mock-post.service";
 
 /**
  * The main module for the application
@@ -46,7 +48,7 @@ export const routes: Routes = [
       BrowserModule,
       RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [PostService, MockPostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

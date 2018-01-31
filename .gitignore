@@ -2,3 +2,7 @@
 .idea/*
 web-app/node_modules/*
 web-app/coverage/*
+
+*.ttf
+
+web-app/src/assets/satinweave.png

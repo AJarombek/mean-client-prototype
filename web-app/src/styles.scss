@@ -1,1 +1,18 @@
 /* Global Styles */
+
+html {
+  background-image: url("/assets/satinweave.png");
+}
+
+body {
+  background-color: transparent !important;
+  font-family: 'Dyslexie', Helvetica, sans-serif !important;
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Dyslexie;
+  font-weight: bold;
+  src: url("/assets/dyslexie-bold.ttf") format("opentype");
+}
