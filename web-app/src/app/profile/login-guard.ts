@@ -1,4 +1,4 @@
-import {CanActivate} from "@angular/router";
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {Injectable} from "@angular/core";
 
 /**
@@ -10,11 +10,20 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class LoginGuard implements CanActivate {
 
-    canActivate() {
-        return this.isLoggedIn();
+    constructor(private router: Router) {}
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+        return this.isLoggedIn(state);
     }
 
-    private isLoggedIn() {
-        return true;
+    private isLoggedIn(state: RouterStateSnapshot): boolean {
+
+        if (localStorage.getItem('user')) {
+            return true;
+        }
+
+        // Navigate to the login page if you try to navigate to a guarded page without being logged in
+        this.router.navigate(['login'], { queryParams: { returnUrl: state.url }});
+        return false;
     }
 }

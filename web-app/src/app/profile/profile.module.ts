@@ -25,7 +25,7 @@ export const routes = [
       RouterModule.forChild(routes)
   ],
   declarations: [ProfileComponent, PostComponent],
-  providers: [{provide: LoginGuard, useClass: MockLoginGuard}], // Use a mock guard until the Node.js API is set up
+  providers: [{provide: LoginGuard, useClass: LoginGuard}], // Use a mock guard until the Node.js API is set up
   exports: [ProfileComponent, PostComponent]
 })
 export class ProfileModule { }

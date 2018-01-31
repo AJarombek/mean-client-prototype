@@ -21,6 +21,10 @@
   margin-left: 10px;
 }
 
+.navbar {
+  min-height: 100px;
+}
+
 #mobile-nav {
   cursor: pointer;
 }
@@ -61,8 +65,8 @@
   @include media-breakpoint-only(xs) {
     text-align: center;
     margin: 0 auto;
-    width: 196px;
-    padding-left: 10px;
+    width: 241px;
+    padding-left: 20px;
   }
 }
 
