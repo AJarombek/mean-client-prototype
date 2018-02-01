@@ -8,6 +8,11 @@ import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
 import {routes} from "./app.module";
 import {APP_BASE_HREF} from "@angular/common";
+import {CatPictureComponent} from "./cat-picture/cat-picture.component";
+import {AuthenticationService} from "./authentication.service";
+import {MockAuthenticationService} from "./mock/mock-authentication.service";
+import {PostService} from "./post.service";
+import {MockPostService} from "./mock/mock-post.service";
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -20,14 +25,19 @@ describe('AppComponent', () => {
               HomeComponent,
               AboutComponent,
               LoginComponent,
-              SignupComponent
+              SignupComponent,
+              CatPictureComponent
           ],
           imports: [
               BrowserModule,
               RouterModule.forRoot(routes)
           ],
           providers: [
-              {provide: APP_BASE_HREF, useValue: '/'}
+              {provide: APP_BASE_HREF, useValue: '/'},
+              PostService,
+              MockPostService,
+              AuthenticationService,
+              MockAuthenticationService
           ]
       }).compileComponents();
     }));
