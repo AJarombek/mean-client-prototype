@@ -42,3 +42,5 @@ ng generate service post
 ng generate service mock/mock-post
 
 ng generate component cat-picture
+
+ng generate service authentication

@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 
 import {AppComponent} from './app.component';
@@ -10,6 +10,8 @@ import {AboutComponent} from "./about/about.component";
 import { CatPictureComponent } from './cat-picture/cat-picture.component';
 import {PostService} from "./post.service";
 import {MockPostService} from "./mock/mock-post.service";
+import {AuthenticationService} from "./authentication.service";
+import {MockAuthenticationService} from "./mock-authentication.service";
 
 /**
  * The main module for the application
@@ -23,7 +25,8 @@ export const routes: Routes = [
     {path: 'about', component: AboutComponent},
     {path: 'profile/post', loadChildren: './profile/profile.module#ProfileModule'},
     {path: 'login', component: LoginComponent},
-    {path: 'signup', component: SignupComponent}
+    {path: 'signup', component: SignupComponent},
+    {path: '**', redirectTo: ''}
 ];
 
 /**
@@ -48,8 +51,13 @@ export const routes: Routes = [
       BrowserModule,
       RouterModule.forRoot(routes)
   ],
-  providers: [PostService, MockPostService],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+      PostService,
+      MockPostService,
+      AuthenticationService,
+      MockAuthenticationService
+  ],
+  schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
