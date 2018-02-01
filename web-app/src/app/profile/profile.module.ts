@@ -4,7 +4,7 @@ import { ProfileComponent } from './profile.component';
 import { PostComponent } from './post/post.component';
 import { RouterModule } from "@angular/router";
 import {LoginGuard} from "./login-guard";
-import {MockLoginGuard} from "./mock-login-guard";
+import {MockLoginGuard} from "../mock/mock-login-guard";
 
 /**
  * Feature module for the pages only available to signed in users

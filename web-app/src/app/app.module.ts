@@ -11,7 +11,7 @@ import { CatPictureComponent } from './cat-picture/cat-picture.component';
 import {PostService} from "./post.service";
 import {MockPostService} from "./mock/mock-post.service";
 import {AuthenticationService} from "./authentication.service";
-import {MockAuthenticationService} from "./mock-authentication.service";
+import {MockAuthenticationService} from "./mock/mock-authentication.service";
 
 /**
  * The main module for the application
@@ -57,7 +57,6 @@ export const routes: Routes = [
       AuthenticationService,
       MockAuthenticationService
   ],
-  schemas: [NO_ERRORS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
