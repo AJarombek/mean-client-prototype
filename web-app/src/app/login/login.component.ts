@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -12,8 +12,8 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder) {
     this.formModel = fb.group({
-       'username': [''],
-       'password': ['']
+       'username': ['', Validators.required, Validators.maxLength(15)],
+       'password': ['', Validators.required, Validators.maxLength(63)]
     });
   }
 

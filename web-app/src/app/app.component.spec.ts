@@ -14,6 +14,7 @@ import {MockAuthenticationService} from "./mock/mock-authentication.service";
 import {PostService} from "./post.service";
 import {MockPostService} from "./mock/mock-post.service";
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -32,7 +33,9 @@ describe('AppComponent', () => {
           imports: [
               BrowserModule,
               RouterModule.forRoot(routes),
-              HttpClientModule
+              HttpClientModule,
+              FormsModule,
+              ReactiveFormsModule
           ],
           providers: [
               {provide: APP_BASE_HREF, useValue: '/'},
@@ -40,7 +43,7 @@ describe('AppComponent', () => {
               MockPostService,
               AuthenticationService,
               MockAuthenticationService,
-              HttpClientModule
+              Validators
           ]
       }).compileComponents();
     }));
