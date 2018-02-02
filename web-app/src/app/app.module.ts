@@ -13,6 +13,7 @@ import {MockPostService} from "./mock/mock-post.service";
 import {AuthenticationService} from "./authentication.service";
 import {MockAuthenticationService} from "./mock/mock-authentication.service";
 import {HttpClientModule} from "@angular/common/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 /**
  * The main module for the application
@@ -51,7 +52,9 @@ export const routes: Routes = [
   imports: [
       BrowserModule,
       RouterModule.forRoot(routes),
-      HttpClientModule
+      HttpClientModule,
+      FormsModule,
+      ReactiveFormsModule
   ],
   providers: [
       PostService,

@@ -1,9 +1,9 @@
 # mean-client-prototype
 
-[![Build Status](https://travis-ci.org/AJarombek/angular-nodejs-mongodb-prototype.svg?branch=master)](https://travis-ci.org/AJarombek/angular-nodejs-mongodb-prototype)
-[![Coverage Status](https://coveralls.io/repos/github/AJarombek/angular-nodejs-mongodb-prototype/badge.svg)](https://coveralls.io/github/AJarombek/angular-nodejs-mongodb-prototype)
-[![Maintainability](https://api.codeclimate.com/v1/badges/5a4913c5240c45b2390c/maintainability)](https://codeclimate.com/github/AJarombek/angular-nodejs-mongodb-prototype/maintainability)
-[![dependencies Status](https://david-dm.org/AJarombek/angular-nodejs-mongodb-prototype/status.svg?path=web-app)](https://david-dm.org/AJarombek/angular-nodejs-mongodb-prototype?path=web-app)
+[![Build Status](https://travis-ci.org/AJarombek/mean-client-prototype.svg?branch=master)](https://travis-ci.org/AJarombek/mean-client-prototype)
+[![Coverage Status](https://coveralls.io/repos/github/AJarombek/angular-nodejs-mongodb-prototype/badge.svg)](https://coveralls.io/github/AJarombek/mean-client-prototype)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5a4913c5240c45b2390c/maintainability)](https://codeclimate.com/github/AJarombek/mean-client-prototype/maintainability)
+[![dependencies Status](https://david-dm.org/AJarombek/angular-nodejs-mongodb-prototype/status.svg?path=web-app)](https://david-dm.org/AJarombek/mean-client-prototype?path=web-app)
 
 This is a prototype that uses the Angular 5 framework for the front-end and Node.js for the back-end.  MongoDB is used for 
 the database.
