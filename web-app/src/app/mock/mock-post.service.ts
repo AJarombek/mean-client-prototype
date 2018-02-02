@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Post} from "../models/post";
+import {Observable} from "rxjs/Observable";
 
 /**
  * A mock service for supplying picture posts
@@ -17,8 +18,13 @@ export class MockPostService {
     private post3: Post = new Post("...", "Russian Blue :)", "andy", "Andrew",
                                     "Jarombek", new Date(), "I want this cat", 0, 0);
 
-    public getPosts(): [Post] {
-        return [this.post1, this.post2, this.post3];
+    public getPosts(): Observable<[Post]> {
+        return new Observable<[Post]>(posts => {
+
+            posts.next([this.post1, this.post2, this.post3]);
+
+            return posts;
+        });
     }
 
 }

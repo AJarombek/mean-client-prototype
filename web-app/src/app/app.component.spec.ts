@@ -13,6 +13,7 @@ import {AuthenticationService} from "./authentication.service";
 import {MockAuthenticationService} from "./mock/mock-authentication.service";
 import {PostService} from "./post.service";
 import {MockPostService} from "./mock/mock-post.service";
+import {HttpClientModule} from "@angular/common/http";
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -30,14 +31,16 @@ describe('AppComponent', () => {
           ],
           imports: [
               BrowserModule,
-              RouterModule.forRoot(routes)
+              RouterModule.forRoot(routes),
+              HttpClientModule
           ],
           providers: [
               {provide: APP_BASE_HREF, useValue: '/'},
               PostService,
               MockPostService,
               AuthenticationService,
-              MockAuthenticationService
+              MockAuthenticationService,
+              HttpClientModule
           ]
       }).compileComponents();
     }));

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {PostService} from "../post.service";
 import {MockPostService} from "../mock/mock-post.service";
 import {Post} from "../models/post";
+import {Observable} from "rxjs/Observable";
 
 /**
  * The component that displays all the cat pictures
@@ -20,6 +21,11 @@ export class HomeComponent {
 
   // The private modifier creates a new instance variable
   constructor(private postService: PostService) {
-    this.posts = postService.getPosts()
+
+    // Subscribe to the Observable that getPosts() returns ans when the value arrives give it to the posts variable
+    postService.getPosts().subscribe(data => {
+      
+      this.posts = data;
+    });
   }
 }
