@@ -1,19 +1,18 @@
-<div class="container-fluid">
-  <form #f="ngForm" [formGroup]="formModel" (ngSubmit)="onSubmit()">
-    <pre>{{f.value | json}}</pre>
+<div id="login-div" class="container-fluid">
+  <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
     <div>
-      <input type="text" formControlName="username">
+      <input type="text" formControlName="username" maxlength="15"><br>
       <!-- Show this error if the form has a required error and the field has been touched by the user -->
       <span [hidden]="!formModel.hasError('required', 'username') || !formModel.get('username').dirty">
         Username is Required
       </span>
     </div>
     <div>
-      <input type="password" formControlName="password">
+      <input type="password" formControlName="password" maxlength="63"><br>
       <span [hidden]="!formModel.hasError('required', 'password') || !formModel.get('password').dirty">
         Password is Required
       </span>
     </div>
-    <button type="submit">Log In</button>
+    <button type="submit" [disabled]="!formModel.valid">Log In</button>
   </form>
 </div>

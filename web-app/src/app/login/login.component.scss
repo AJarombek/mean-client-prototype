@@ -1,0 +1,44 @@
+/**
+ * Author: Andrew Jarombek
+ * Date: 2/2/2018
+ * Styles for the login component
+ */
+
+@import "../../styles.scss";
+@import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+span {
+  @include sylexiad;
+  color: #990000;
+}
+
+input {
+  @include sylexiad-bold;
+  @include transition("border-color", #777);
+  border: #ccc 1px solid;
+}
+
+#login-div {
+  width: 350px;
+  margin: 50px auto 0 auto;
+  padding: 20px 0 20px 0;
+  text-align: center;
+  background-color: white;
+  border-radius: 12px;
+  border: #ccc 1px solid;
+
+  @include media-breakpoint-only(xs) {
+    width: 300px;
+    margin: 50px auto 0 auto;
+
+    input, button {
+      width: 220px !important;
+    }
+  }
+
+  input, button {
+    width: 250px;
+    height: 40px;
+    margin: 5px;
+  }
+}
