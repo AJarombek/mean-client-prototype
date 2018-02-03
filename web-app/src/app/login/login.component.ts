@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {AuthenticationService} from "../authentication.service";
 import {MockAuthenticationService} from "../mock/mock-authentication.service";
 import {Router} from "@angular/router";
+import {Auth} from "../auth";
 
 /**
  * Component for handling the form that logs in users
@@ -21,7 +22,11 @@ export class LoginComponent {
   formModel: FormGroup;
   loginError: string = null;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthenticationService) {
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private auth: Auth,
+              private authService: AuthenticationService) {
+
     this.formModel = fb.group({
        'username': ['', [Validators.required, Validators.maxLength(15)]],
        'password': ['', [Validators.required, Validators.maxLength(63)]]
@@ -40,5 +45,9 @@ export class LoginComponent {
     } else {
       console.error('The form is not valid');
     }
+  }
+
+  logout() {
+      this.authService.logout();
   }
 }

@@ -1,21 +1,32 @@
 <div id="login-div" class="container-fluid">
-  <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
-    <div>
-      <input type="text" formControlName="username" maxlength="15" placeholder="Username"><br>
-      <!-- Show this error if the form has a required error and the field has been touched by the user -->
-      <span [hidden]="!formModel.hasError('required', 'username') || !formModel.get(['username']).dirty">
+
+  <!-- If the user is not already signed in, show the form.  Otherwise, tell them and give the option to sign out -->
+  <div *ngIf="!auth.isAuthenticated; else already_signed_in">
+    <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
+      <div>
+        <input type="text" formControlName="username" maxlength="15" placeholder="Username"><br>
+        <!-- Show this error if the form has a required error and the field has been touched by the user -->
+        <span [hidden]="!formModel.hasError('required', ['username']) || !formModel.get('username').dirty">
         Username is Required
       </span>
-    </div>
-    <div>
-      <input type="password" formControlName="password" maxlength="63" placeholder="Password"><br>
-      <span [hidden]="!formModel.hasError('required', 'password') || !formModel.get(['password']).dirty">
+      </div>
+      <div>
+        <input type="password" formControlName="password" maxlength="63" placeholder="Password"><br>
+        <span [hidden]="!formModel.hasError('required', ['password']) || !formModel.get('password').dirty">
         Password is Required
       </span>
-    </div>
-    <button type="submit" [disabled]="!formModel.valid">Log In</button><br>
-    <span [hidden]="!loginError">
+      </div>
+      <button type="submit" [disabled]="!formModel.valid">Log In</button><br>
+      <span [hidden]="!loginError">
         {{loginError}}
-    </span>
-  </form>
+      </span>
+    </form>
+  </div>
+
+  <!-- ng-template is angular's implementation of the <template> tag -->
+  <!-- The contents of ng-template are not rendered when the page is loaded but may be instantiated later -->
+  <ng-template #already_signed_in>
+    <p>Already Signed In!</p>
+    <button type="submit" (click)="logout()">Log Out</button>
+  </ng-template>
 </div>

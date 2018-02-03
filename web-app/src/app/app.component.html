@@ -24,18 +24,22 @@ Create the HTML for the main page of the web app.  The template uses bootstrap 4
             <!-- mr-auto : Set the margin-right to auto -->
             <nav class="nav navbar-nav flex-sm-row mx-2 mr-auto">
                 <!-- mx-5 : Specify the margin for each element -->
-                <a class="nav-link mx-4" [routerLink]="['/profile']">Profile</a>
-                <a class="nav-link mx-4" [routerLink]="['/profile/post']">Post</a>
+                <a class="nav-link mx-4" [hidden]="!auth.isAuthenticated" [routerLink]="['/profile']">Profile</a>
+                <a class="nav-link mx-4" [hidden]="!auth.isAuthenticated" [routerLink]="['/profile/post']">Post</a>
                 <a class="nav-link mx-4" [routerLink]="['/about']">About</a>
             </nav>
             <div id="nav-buttons" class="nav navbar-nav flex-row">
                 <!-- Define two buttons with bootstrap basic styling -->
-                <div class="btn btn-outline-secondary mx-1" id="login-button">
+                <div class="btn btn-outline-secondary mx-1" id="login-button" [hidden]="auth.isAuthenticated">
                     <a [routerLink]="['/login']">Login</a>
                 </div>
                 <span>  </span>
-                <div class="btn btn-outline-primary mx-1" id="signup-button">
+                <div class="btn btn-outline-primary mx-1" id="signup-button" [hidden]="auth.isAuthenticated">
                     <a [routerLink]="['/signup']">Sign Up</a>
+                </div>
+                <div class="btn btn-outline-primary mx-1" id="signout-button"
+                     [hidden]="!auth.isAuthenticated" (click)="logout()">
+                    <a>Log Out</a>
                 </div>
             </div>
         </div>

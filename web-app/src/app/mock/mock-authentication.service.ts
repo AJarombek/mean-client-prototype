@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
+import {Auth} from "../auth";
 
 /**
  * Mock service for authenticating users and setting up / taking down user sessions
@@ -10,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class MockAuthenticationService {
 
-    constructor() { }
+    constructor(private auth: Auth) { }
 
     /**
      * Mock login for a user and create a new session
@@ -23,6 +24,8 @@ export class MockAuthenticationService {
         // Accept a user with the test account
         if (username === 'andy' && password === 'test') {
             localStorage.setItem('user', JSON.stringify({user:'andy'}));
+            this.auth.isAuthenticated = true;
+            this.auth.username = 'andy';
 
             return new Observable(data => {
                 data.next('Signed In!');
@@ -39,5 +42,7 @@ export class MockAuthenticationService {
      */
     logout() {
         localStorage.removeItem('user');
+        this.auth.isAuthenticated = false;
+        this.auth.username = null;
     }
 }

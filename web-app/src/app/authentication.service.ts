@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {appConfig} from "./app.config";
 import 'rxjs/add/operator/map';
+import {Observable} from "rxjs/Observable";
+import {Auth} from "./auth";
 
 /**
  * Service for authenticating users and setting up / taking down user sessions
@@ -14,7 +16,7 @@ export class AuthenticationService {
 
   private loginUrl = '/auth/login';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private auth: Auth) { }
 
   /**
    * Login a user and create a new session
@@ -31,9 +33,17 @@ export class AuthenticationService {
           // This is to create a session that will keep the user logged in.  LocalStorage items have no expiration date
           if (user && user.token) {
             localStorage.setItem('user', JSON.stringify(user));
-          }
+            this.auth.isAuthenticated = true;
+            this.auth.username = user;
 
-          return user;
+            return new Observable(data => {
+                data.next('Signed In!');
+            });
+          } else {
+            return new Observable(data => {
+                data.error('Invalid Username or Password');
+            });
+          }
         });
   }
 
@@ -42,5 +52,7 @@ export class AuthenticationService {
    */
   logout() {
     localStorage.removeItem('user');
+    this.auth.isAuthenticated = false;
+    this.auth.username = null;
   }
 }

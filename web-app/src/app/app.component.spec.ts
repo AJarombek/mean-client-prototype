@@ -15,6 +15,7 @@ import {PostService} from "./post.service";
 import {MockPostService} from "./mock/mock-post.service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Auth} from "./auth";
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -43,7 +44,8 @@ describe('AppComponent', () => {
               MockPostService,
               AuthenticationService,
               MockAuthenticationService,
-              Validators
+              Validators,
+              Auth
           ]
       }).compileComponents();
     }));
