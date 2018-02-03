@@ -4,6 +4,9 @@
  * Global Styles
  */
 
+/**
+ * A mixin that sets the font to sylexiad
+ */
 @mixin sylexiad {
   font: {
     family: 'Sylexiad', Helvetica, sans-serif !important;
@@ -12,6 +15,9 @@
   }
 }
 
+/**
+ * A mixin that sets the font to sylexiad bold
+ */
 @mixin sylexiad-bold {
   font: {
     family: 'Sylexiad-Bold', Helvetica, sans-serif !important;
@@ -20,6 +26,9 @@
   }
 }
 
+/**
+ * A mixin that sets the font to dyslexie
+ */
 @mixin dyslexie {
   background-color: transparent !important;
   font-family: 'Dyslexie', Helvetica, sans-serif !important;

@@ -18,14 +18,20 @@ export class MockAuthenticationService {
      * @param {string} password - the users password
      * @returns {Observable<any>}
      */
-    login(username: string, password: string) {
+    login(username: string, password: string): Observable<any> {
 
         // Accept a user with the test account
         if (username === 'andy' && password === 'test') {
             localStorage.setItem('user', JSON.stringify({user:'andy'}));
-        }
 
-        return new Observable;
+            return new Observable(data => {
+                data.next('Signed In!');
+            });
+        } else {
+            return new Observable(data => {
+                data.error('Invalid Username or Password');
+            });
+        }
     }
 
     /**

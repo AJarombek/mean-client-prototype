@@ -12,9 +12,28 @@ span {
   color: #990000;
 }
 
-input {
+.border-transition {
+  // Call the transaction mixin passing it a css property and style to transition to
+  @include transition("border-color", #999);
+}
+
+button {
+  // Extend the functionality of another classes css styling and build on it
+  @extend .border-transition;
+
   @include sylexiad-bold;
-  @include transition("border-color", #777);
+  background-color: #8bb3f4;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: auto;
+  }
+}
+
+input {
+  @extend .border-transition;
+
+  @include sylexiad;
   border: #ccc 1px solid;
 }
 
