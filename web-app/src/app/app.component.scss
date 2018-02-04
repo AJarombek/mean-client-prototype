@@ -8,8 +8,10 @@
 @import "../styles";
 
 @mixin button-style {
+  @include sylexiad-bold;
   width: 85px;
   border-radius: 2px;
+  cursor: pointer;
   a {
     color: #fff;
     margin: 0 auto;
@@ -37,7 +39,7 @@
 
   @include media-breakpoint-only(sm) {
     width: 68px;
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
@@ -49,7 +51,7 @@
 
   @include media-breakpoint-only(sm) {
     width: 85px !important;
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 

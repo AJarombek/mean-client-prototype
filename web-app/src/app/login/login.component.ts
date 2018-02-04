@@ -19,11 +19,14 @@ import {Auth} from "../auth";
 })
 export class LoginComponent {
 
+  // Is the login process in progress
   public inProgress: boolean = false;
+
+  // What text is displayed on the submit button
   public submitText: string = 'Log In';
 
-  formModel: FormGroup;
-  loginError: string = null;
+  public formModel: FormGroup;
+  public loginError: string = null;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -36,6 +39,9 @@ export class LoginComponent {
     });
   }
 
+  /**
+   * Called when the login form is submitted
+   */
   onSubmit() {
     this.inProgress = true;
     this.submitText = 'Logging In...';

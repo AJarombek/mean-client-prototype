@@ -1,3 +1,58 @@
-<p>
-  Signup Component!
-</p>
+<div id="signup-div" class="container-fluid">
+
+  <!-- If the user is not already signed in, show the form.  Otherwise, tell them and give the option to sign out -->
+  <div *ngIf="!auth.isAuthenticated; else already_signed_in">
+    <form [formGroup]="formModel" (ngSubmit)="onSubmit()">
+      <div>
+        <input type="text" formControlName="username" maxlength="15" placeholder="Username"><br>
+        <!-- Show this error if the form has a required error and the field has been touched by the user -->
+        <span [hidden]="!formModel.hasError('required', ['username']) || !formModel.get('username').dirty">
+          Username is Required
+        </span>
+      </div>
+      <div>
+        <input type="text" formControlName="first" maxlength="31" placeholder="First Name"><br>
+        <span [hidden]="!formModel.hasError('required', ['first']) || !formModel.get('first').dirty">
+          First Name is Required
+        </span>
+      </div>
+      <div>
+        <input type="text" formControlName="last" maxlength="31" placeholder="Last Name"><br>
+        <span [hidden]="!formModel.hasError('required', ['last']) || !formModel.get('last').dirty">
+          Last Name is Required
+        </span>
+      </div>
+
+      <div formGroupName="pwGroup">
+        <div>
+          <input type="password" formControlName="password" maxlength="63" placeholder="Password"><br>
+          <span [hidden]="!formModel.hasError('required', ['pwGroup', 'password']) ||
+                !formModel.get(['pwGroup', 'password']).dirty">
+          Password is Required
+        </span>
+        </div>
+        <div>
+          <input type="password" formControlName="pwConfirm" maxlength="63" placeholder="Confirm Password"><br>
+          <span [hidden]="!formModel.hasError('required', ['pwGroup', 'pwConfirm']) ||
+                !formModel.get(['pwGroup', 'pwConfirm']).dirty">
+          Password Confirm is Required
+        </span>
+        </div>
+      </div>
+
+      <button [ngClass]="{'in-progress': inProgress}" type="submit" [disabled]="!formModel.valid">
+        {{submitText}}
+      </button><br>
+      <span [hidden]="!signupError">
+        {{signupError}}
+      </span>
+    </form>
+  </div>
+
+  <!-- ng-template is angular's implementation of the <template> tag -->
+  <!-- The contents of ng-template are not rendered when the page is loaded but may be instantiated later -->
+  <ng-template #already_signed_in>
+    <p>Already Signed In!</p>
+    <button type="submit" (click)="logout()">Log Out</button>
+  </ng-template>
+</div>

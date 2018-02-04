@@ -1,0 +1,24 @@
+/**
+ * Author: Andrew Jarombek
+ * Date: 2/3/2018
+ * Styles for the Sign Up Component.  Much of the styles here are extended by the form styles
+ * defined in the login component.
+ */
+
+@import "../login/login.component";
+
+span {
+  @extend .span-style;
+}
+
+button {
+  @extend .button-style;
+}
+
+input {
+  @extend .input-style;
+}
+
+#signup-div {
+  @extend .div-style;
+}

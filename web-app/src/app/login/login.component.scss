@@ -7,17 +7,23 @@
 @import "../../styles.scss";
 @import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
 
-span {
-  @include sylexiad;
-  color: #990000;
-}
-
 .border-transition {
   // Call the transaction mixin passing it a css property and style to transition to
   @include transition("border-color", #999);
 }
 
-button {
+/**
+ * Define a general style to be extended for <span> elements in a form
+ */
+.span-style {
+  @include sylexiad;
+  color: #990000;
+}
+
+/**
+ * Define a general style to be extended for <button> elements in a form
+ */
+.button-style {
   // Extend the functionality of another classes css styling and build on it
   @extend .border-transition;
 
@@ -30,18 +36,20 @@ button {
   }
 }
 
-.in-progress {
-  background-color: $baby-blue-light;
-}
-
-input {
+/**
+ * Define a general style to be extended for <input> elements in a form
+ */
+.input-style {
   @extend .border-transition;
 
   @include sylexiad;
   border: #ccc 1px solid;
 }
 
-#login-div {
+/**
+ * Define a general style to be extended to outline a form
+ */
+.div-style {
   width: 350px;
   margin: 50px auto 0 auto;
   padding: 20px 0 20px 0;
@@ -64,4 +72,24 @@ input {
     height: 40px;
     margin: 5px;
   }
+}
+
+span {
+  @extend .span-style;
+}
+
+button {
+  @extend .button-style;
+}
+
+.in-progress {
+  background-color: $baby-blue-light;
+}
+
+input {
+  @extend .input-style;
+}
+
+#login-div {
+  @extend .div-style;
 }
