@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 
 import {AppComponent} from './app.component';
@@ -16,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "./auth";
 import {UserService} from "./user.service";
+import {CatPictureModule} from "./cat-picture/cat-picture.module";
 
 /**
  * The main module for the application
@@ -49,14 +50,14 @@ export const routes: Routes = [
       AboutComponent,
       LoginComponent,
       SignupComponent,
-      CatPictureComponent,
   ],
   imports: [
       BrowserModule,
       RouterModule.forRoot(routes),
       HttpClientModule,
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      CatPictureModule
   ],
   providers: [
       PostService,

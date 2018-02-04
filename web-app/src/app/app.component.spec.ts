@@ -17,6 +17,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "./auth";
 import {UserService} from "./user.service";
+import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -48,7 +49,8 @@ describe('AppComponent', () => {
               Validators,
               Auth,
               UserService
-          ]
+          ],
+          schemas: [CUSTOM_ELEMENTS_SCHEMA]
       }).compileComponents();
     }));
     beforeEach(() => {

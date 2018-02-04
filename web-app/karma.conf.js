@@ -35,7 +35,9 @@ module.exports = function (config) {
               flags: ['--no-sandbox']
           }
         },
-        singleRun: false
+        singleRun: false,
+        browserDisconnectTolerance: 2,
+        browserNoActivityTimeout: 50000
     };
 
     if (process.env.TRAVIS) {
