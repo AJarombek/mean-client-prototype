@@ -30,7 +30,7 @@ export class LoginComponent {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private auth: Auth,
+              public auth: Auth,
               private authService: AuthenticationService) {
 
     this.formModel = fb.group({

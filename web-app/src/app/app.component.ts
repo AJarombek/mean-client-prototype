@@ -17,7 +17,7 @@ import {Auth} from "./auth";
 })
 export class AppComponent {
 
-  constructor(private auth: Auth, private authService: AuthenticationService) {}
+  constructor(public auth: Auth, private authService: AuthenticationService) {}
 
   logout() {
     this.authService.logout();
