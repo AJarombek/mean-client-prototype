@@ -16,7 +16,9 @@
         Password is Required
       </span>
       </div>
-      <button type="submit" [disabled]="!formModel.valid">Log In</button><br>
+      <button [ngClass]="{'in-progress': inProgress}" type="submit" [disabled]="!formModel.valid">
+        {{submitText}}
+      </button><br>
       <span [hidden]="!loginError">
         {{loginError}}
       </span>

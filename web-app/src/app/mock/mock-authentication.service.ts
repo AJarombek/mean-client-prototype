@@ -23,12 +23,18 @@ export class MockAuthenticationService {
 
         // Accept a user with the test account
         if (username === 'andy' && password === 'test') {
-            localStorage.setItem('user', JSON.stringify({user:'andy'}));
-            this.auth.isAuthenticated = true;
-            this.auth.username = 'andy';
+
+            // Delay the sign in process by two seconds
+            setTimeout(() => {
+                localStorage.setItem('user', JSON.stringify({user:'andy'}));
+                this.auth.isAuthenticated = true;
+                this.auth.username = 'andy';
+            }, 2000);
 
             return new Observable(data => {
-                data.next('Signed In!');
+                setTimeout(() => {
+                    data.next('Signed In!');
+                }, 2000);
             });
         } else {
             return new Observable(data => {

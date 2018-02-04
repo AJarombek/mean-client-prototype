@@ -19,6 +19,9 @@ import {Auth} from "../auth";
 })
 export class LoginComponent {
 
+  public inProgress: boolean = false;
+  public submitText: string = 'Log In';
+
   formModel: FormGroup;
   loginError: string = null;
 
@@ -34,13 +37,17 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.inProgress = true;
+    this.submitText = 'Logging In...';
     if (this.formModel.valid) {
       this.authService.login(this.formModel.value.username, this.formModel.value.password)
           .subscribe(() => {
             this.loginError = null;
             this.router.navigate(['/']);
+            this.submitDone();
           }, error => {
             this.loginError = `Failed to Sign In User: ${error}`;
+            this.submitDone();
           });
     } else {
       console.error('The form is not valid');
@@ -49,5 +56,10 @@ export class LoginComponent {
 
   logout() {
       this.authService.logout();
+  }
+
+  private submitDone() {
+      this.inProgress = false;
+      this.submitText = 'Log In';
   }
 }

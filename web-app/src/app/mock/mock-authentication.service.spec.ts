@@ -1,11 +1,12 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import {MockAuthenticationService} from "./mock-authentication.service";
+import {Auth} from "../auth";
 
 describe('MockAuthenticationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MockAuthenticationService]
+      providers: [MockAuthenticationService, Auth]
     });
   });
 

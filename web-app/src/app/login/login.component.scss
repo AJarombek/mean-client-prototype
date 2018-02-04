@@ -22,12 +22,16 @@ button {
   @extend .border-transition;
 
   @include sylexiad-bold;
-  background-color: #8bb3f4;
+  background-color: $baby-blue;
   cursor: pointer;
 
   &:disabled {
     cursor: auto;
   }
+}
+
+.in-progress {
+  background-color: $baby-blue-light;
 }
 
 input {

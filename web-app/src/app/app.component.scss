@@ -5,11 +5,11 @@
  */
 
 @import "../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+@import "../styles";
 
 @mixin button-style {
   width: 85px;
   border-radius: 2px;
-  transition: background-color .3s ease;
   a {
     color: #fff;
     margin: 0 auto;
@@ -33,6 +33,7 @@
 #login-button {
   @include button-style;
   border-color: #aaa;
+  @include transition("background-color", $light-gray);
 
   @include media-breakpoint-only(sm) {
     width: 68px;
@@ -43,7 +44,8 @@
 #signup-button {
   width: 110px !important;
   @include button-style;
-  border-color: #0074D9;
+  border-color: $baby-blue;
+  @include transition("background-color", $baby-blue);
 
   @include media-breakpoint-only(sm) {
     width: 85px !important;
@@ -51,12 +53,11 @@
   }
 }
 
-#login-button:hover, #login-button:focus {
-  background-color: #aaa;
-}
-
-#signup-button:hover, #signup-button:focus {
-  background-color: #aaa;
+#signout-button {
+  width: 120px !important;
+  @include button-style;
+  border-color: $baby-blue;
+  @include transition("background-color", $baby-blue);
 }
 
 #nav-buttons {
