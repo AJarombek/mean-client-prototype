@@ -9,17 +9,26 @@
         <span [hidden]="!formModel.hasError('required', ['username']) || !formModel.get('username').dirty">
           Username is Required
         </span>
+        <span [hidden]="!formModel.hasError('pattern', ['username'])">
+          Username Contains Invalid Characters
+        </span>
       </div>
       <div>
         <input type="text" formControlName="first" maxlength="31" placeholder="First Name"><br>
         <span [hidden]="!formModel.hasError('required', ['first']) || !formModel.get('first').dirty">
           First Name is Required
         </span>
+        <span [hidden]="!formModel.hasError('pattern', ['first'])">
+          First Name Contains Invalid Characters
+        </span>
       </div>
       <div>
         <input type="text" formControlName="last" maxlength="31" placeholder="Last Name"><br>
         <span [hidden]="!formModel.hasError('required', ['last']) || !formModel.get('last').dirty">
           Last Name is Required
+        </span>
+        <span [hidden]="!formModel.hasError('pattern', ['last'])">
+          Last Name Contains Invalid Characters
         </span>
       </div>
 
@@ -28,15 +37,24 @@
           <input type="password" formControlName="password" maxlength="63" placeholder="Password"><br>
           <span [hidden]="!formModel.hasError('required', ['pwGroup', 'password']) ||
                 !formModel.get(['pwGroup', 'password']).dirty">
-          Password is Required
-        </span>
+            Password is Required
+          </span>
+          <span [hidden]="!formModel.hasError('minlength', ['pwGroup', 'password']) ||
+                !formModel.get(['pwGroup', 'password']).dirty">
+            Password must be Greater than 5 Characters
+          </span>
         </div>
         <div>
           <input type="password" formControlName="pwConfirm" maxlength="63" placeholder="Confirm Password"><br>
           <span [hidden]="!formModel.hasError('required', ['pwGroup', 'pwConfirm']) ||
                 !formModel.get(['pwGroup', 'pwConfirm']).dirty">
-          Password Confirm is Required
-        </span>
+            Password Confirm is Required
+          </span>
+          <span [hidden]="!formModel.hasError('equal', ['pwGroup']) || !formModel.get(['pwGroup', 'password']).dirty
+                          || !formModel.get(['pwGroup', 'pwConfirm']).dirty ||
+                          formModel.hasError('required', ['pwGroup', 'pwConfirm'])">
+            Passwords do not Match
+          </span>
         </div>
       </div>
 
