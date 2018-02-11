@@ -1,0 +1,15 @@
+/**
+ * Styles for the Cat Picture Posts
+ * @author: Andrew Jarombek
+ * @since: 2/10/2018
+ */
+
+@import "../../styles";
+
+.cat-image {
+  border-radius: 5px 5px 0 0;
+}
+
+h4, .cat-post-date, .cat-post-description {
+  @include sylexiad-bold;
+}

@@ -5,4 +5,6 @@ web-app/coverage/*
 
 *.ttf
 
-web-app/src/assets/satinweave.png
+web-app/src/assets/*.png
+
+web-app/src/assets/catpics/*

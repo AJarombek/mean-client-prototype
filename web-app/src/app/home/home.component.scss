@@ -8,11 +8,8 @@
 
 // Change the number of columns shown for bootstrap cards depending on screen size
 .card-columns {
-  @include media-breakpoint-only(lg) {
-    column-count: 4;
-  }
   @include media-breakpoint-only(xl) {
-    column-count: 5;
+    column-count: 4;
   }
   @include media-breakpoint-only(sm) {
     column-count: 2;

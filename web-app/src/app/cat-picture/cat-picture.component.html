@@ -1,9 +1,9 @@
 <div class="card">
-  <img src={{post?.picture}} alt={{post?.picture}}>
-  <div class="card-block">
-    <h4 class="card-title">{{post?.name}}</h4>
+  <img class="img-fluid cat-image" src={{post?.picture}} alt={{post?.picture}}>
+  <div class="card-block mx-2">
+    <h4 class="card-title mt-2">{{post?.name}}</h4>
     <p class="card-text"><small class="text-muted">{{post?.first + " " + post?.last}}</small></p>
-    <p class="card-text"><small class="text-muted">{{post?.date.toDateString()}}</small></p>
-    <p class="card-text">{{post?.description}}</p>
+    <p class="card-text cat-post-date"><small class="text-muted">{{post?.date.toDateString()}}</small></p>
+    <p class="card-text cat-post-description">{{post?.description}}</p>
   </div>
 </div>

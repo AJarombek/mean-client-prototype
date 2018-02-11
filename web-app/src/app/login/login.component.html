@@ -1,5 +1,7 @@
 <div id="login-div" class="container-fluid">
 
+  <img class="img-fluid logo" src="../../assets/logo.png">
+
   <!-- If the user is not already signed in, show the form.  Otherwise, tell them and give the option to sign out -->
   <div *ngIf="!auth.isAuthenticated; else already_signed_in">
     <form [formGroup]="formModel" (ngSubmit)="onSubmit()">

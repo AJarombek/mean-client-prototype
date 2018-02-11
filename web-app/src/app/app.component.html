@@ -8,14 +8,18 @@ Create the HTML for the main page of the web app.  The template uses bootstrap 4
     <!-- navbar : a wrapper for the bootstrap navigation bar -->
     <!-- navbar-dark & bg-dark : dark colored styling -->
     <!-- navbar-expand-sm : only show the mobile site navbar-toggler when screens are larger then small -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <!-- fixed-top : keeps the navbar at the top of the screen while scrolling -->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
         <button id="mobile-nav" class="navbar-toggler navbar-left" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- navbar-brand : specify a brand title for the nav -->
-        <a class="navbar-brand" [routerLink]="['/']">MeowPics</a>
+        <a class="navbar-brand" [routerLink]="['/']">
+            <img class="img-fluid logo" src="../assets/logoNoTitle.png">
+            MeowPics
+        </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Specify the navigation items in the nav bar -->
@@ -23,7 +27,7 @@ Create the HTML for the main page of the web app.  The template uses bootstrap 4
                      becomes vertical on small screens -->
             <!-- mr-auto : Set the margin-right to auto -->
             <nav class="nav navbar-nav flex-sm-row mx-2 mr-auto">
-                <!-- mx-5 : Specify the margin for each element -->
+                <!-- mx-4 : Specify the margin for each element -->
                 <a class="nav-link mx-4" [hidden]="!auth.isAuthenticated" [routerLink]="['/profile']">Profile</a>
                 <a class="nav-link mx-4" [hidden]="!auth.isAuthenticated" [routerLink]="['/profile/post']">Post</a>
                 <a class="nav-link mx-4" [routerLink]="['/about']">About</a>
