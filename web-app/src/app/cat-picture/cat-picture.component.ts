@@ -15,5 +15,5 @@ import {Post} from "../models/post";
 export class CatPictureComponent {
 
   // The @Input annotation is used to get an input parameter from the parent component
-  @Input() post: Post
+  @Input() post: Post;
 }

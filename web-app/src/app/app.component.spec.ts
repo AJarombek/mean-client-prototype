@@ -18,6 +18,8 @@ import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "./auth";
 import {UserService} from "./user.service";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
+import {ProfileService} from "./profile.service";
+import {MockUserService} from "./mock/mock-user.service";
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -48,7 +50,9 @@ describe('AppComponent', () => {
               MockAuthenticationService,
               Validators,
               Auth,
-              UserService
+              UserService,
+              MockUserService,
+              ProfileService
           ],
           schemas: [CUSTOM_ELEMENTS_SCHEMA]
       }).compileComponents();

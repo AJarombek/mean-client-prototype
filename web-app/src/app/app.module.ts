@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "./auth";
 import {UserService} from "./user.service";
 import {CatPictureModule} from "./cat-picture/cat-picture.module";
+import {ProfileService} from "./profile.service";
 
 /**
  * The main module for the application
@@ -26,7 +27,7 @@ import {CatPictureModule} from "./cat-picture/cat-picture.module";
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
-    {path: 'profile', loadChildren: './profile/profile.module#ProfileModule'},
+    {path: 'profile/:username', loadChildren: './profile/profile.module#ProfileModule'},
     {path: 'about', component: AboutComponent},
     {path: 'profile/post', loadChildren: './profile/profile.module#ProfileModule'},
     {path: 'login', component: LoginComponent},
@@ -66,7 +67,8 @@ export const routes: Routes = [
       MockAuthenticationService,
       Validators,
       Auth,
-      UserService
+      UserService,
+      ProfileService
   ],
   bootstrap: [AppComponent]
 })
