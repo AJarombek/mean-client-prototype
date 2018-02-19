@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProfileComponent } from './profile.component';
 import {ProfileService} from "../profile.service";
 import {MockUserService} from "../mock/mock-user.service";
+import {LoadedService} from "../loaded.service";
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -11,7 +12,7 @@ describe('ProfileComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProfileComponent ],
-      providers: [ProfileService, MockUserService]
+      providers: [ProfileService, MockUserService, LoadedService]
     })
     .compileComponents();
   }));

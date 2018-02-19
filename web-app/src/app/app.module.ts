@@ -18,6 +18,7 @@ import {Auth} from "./auth";
 import {UserService} from "./user.service";
 import {CatPictureModule} from "./cat-picture/cat-picture.module";
 import {ProfileService} from "./profile.service";
+import {LoadedService} from "./loaded.service";
 
 /**
  * The main module for the application
@@ -68,7 +69,8 @@ export const routes: Routes = [
       Validators,
       Auth,
       UserService,
-      ProfileService
+      ProfileService,
+      LoadedService
   ],
   bootstrap: [AppComponent]
 })

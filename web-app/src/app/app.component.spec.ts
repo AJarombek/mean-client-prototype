@@ -20,6 +20,7 @@ import {UserService} from "./user.service";
 import {CUSTOM_ELEMENTS_SCHEMA} from "@angular/core";
 import {ProfileService} from "./profile.service";
 import {MockUserService} from "./mock/mock-user.service";
+import {LoadedService} from "./loaded.service";
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -52,7 +53,8 @@ describe('AppComponent', () => {
               Auth,
               UserService,
               MockUserService,
-              ProfileService
+              ProfileService,
+              LoadedService
           ],
           schemas: [CUSTOM_ELEMENTS_SCHEMA]
       }).compileComponents();

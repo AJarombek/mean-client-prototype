@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import {AfterContentChecked, AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from "./authentication.service";
 import {MockAuthenticationService} from "./mock/mock-authentication.service";
 import {Auth} from "./auth";
 import {ProfileService} from "./profile.service";
 import {MockUserService} from "./mock/mock-user.service";
+import {Subject} from "rxjs/Subject";
+import {LoadedService} from "./loaded.service";
+import {takeUntil} from "rxjs/operators";
 
 /**
  * Component for the application.  Contains the navigation bar and an outlet to the current routed page
@@ -22,12 +25,29 @@ import {MockUserService} from "./mock/mock-user.service";
       MockUserService
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
 
+    private ngUnsubscribe: Subject<any> = new Subject();
     private LOG_TAG: string = '[App.Component]';
 
     constructor(public auth: Auth, private authService: AuthenticationService,
-              private profileService: ProfileService) {}
+              private profileService: ProfileService, private loadedService: LoadedService) {
+        console.info(loadedService);
+    }
+
+    ngOnInit(): void {
+        console.info(this.loadedService);
+        this.loadedService.onData.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
+            console.info(`${this.LOG_TAG} Receiving Component Loaded Notification: ${res}`);
+            this.getProfileData(this.auth.username);
+        });
+    }
+
+    ngOnDestroy(): void {
+        console.info(`${this.LOG_TAG} OnDestroy() called for App Component`);
+        this.ngUnsubscribe.next();
+        this.ngUnsubscribe.complete();
+    }
 
     logout() {
         this.authService.logout();
@@ -35,8 +55,6 @@ export class AppComponent {
 
     getProfileData(username: string) {
         console.info(`${this.LOG_TAG} Emitted Username: ${username}`);
-        setTimeout(() => {
-            this.profileService.emitData(username);
-        }, 1000);
+        this.profileService.emitData(username);
     }
 }

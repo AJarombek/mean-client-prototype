@@ -1,7 +1,8 @@
-import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProfileService} from "../profile.service";
 import {Subject} from "rxjs/Subject";
 import {takeUntil} from "rxjs/operators";
+import {LoadedService} from "../loaded.service";
 
 /**
  * Component for the profile page.
@@ -22,18 +23,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private ngUnsubscribe: Subject<any> = new Subject();
     private LOG_TAG: string = '[Profile.Component]';
 
-    constructor(private profileService: ProfileService, private ngZone: NgZone) {}
+    constructor(private profileService: ProfileService, private loadedService: LoadedService) {}
 
     ngOnInit(): void {
         this.profileService.onData.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
             console.info(`${this.LOG_TAG} Receiving User ${res}`);
 
-            setTimeout(() => {
-                this.user = JSON.parse(res);
-                console.info(`${this.LOG_TAG} ${this.user.first}`);
-            }, 1000);
+            this.user = JSON.parse(res);
+            console.info(`${this.LOG_TAG} ${this.user.first}`);
 
         });
+
+        // Notify Loaded Service Subscribers (AppComponent) that the Profile Component is laoded
+        const component = 'profile';
+        console.info(`${this.LOG_TAG} Emitted Component Loaded Notification: ${component}`);
+        this.loadedService.emitData(component);
     }
 
     /**
