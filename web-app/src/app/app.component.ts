@@ -24,15 +24,19 @@ import {MockUserService} from "./mock/mock-user.service";
 })
 export class AppComponent {
 
-  constructor(public auth: Auth, private authService: AuthenticationService,
+    private LOG_TAG: string = '[App.Component]';
+
+    constructor(public auth: Auth, private authService: AuthenticationService,
               private profileService: ProfileService) {}
 
-  logout() {
-    this.authService.logout();
-  }
+    logout() {
+        this.authService.logout();
+    }
 
-  getProfileData(username: string) {
-    console.info(`Emitted Username: ${username}`);
-    this.profileService.emitData(username);
-  }
+    getProfileData(username: string) {
+        console.info(`${this.LOG_TAG} Emitted Username: ${username}`);
+        setTimeout(() => {
+            this.profileService.emitData(username);
+        }, 1000);
+    }
 }

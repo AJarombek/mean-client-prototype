@@ -10,13 +10,14 @@ import {Injectable} from "@angular/core";
 export class Auth {
     private _isAuthenticated: boolean = false;
     private _username: string = null;
+    private LOG_TAG: string = '[Auth]';
 
     get isAuthenticated(): boolean {
         return this._isAuthenticated;
     }
 
     set isAuthenticated(val: boolean) {
-        console.info(`Setting 'isAuthenticated' to ${val}`);
+        console.info(`${this.LOG_TAG} Setting 'isAuthenticated' to ${val}`);
         this._isAuthenticated = val;
     }
 
@@ -25,7 +26,7 @@ export class Auth {
     }
 
     set username(val: string) {
-        console.info(`Setting 'username' to ${val}`);
+        console.info(`${this.LOG_TAG} Setting 'username' to ${val}`);
         this._username = val;
     }
 }
