@@ -24,7 +24,12 @@ export class CatPictureComponent {
     constructor(private usernameService: UsernameService) {}
 
     emitUsername() {
-        console.info(`${this.LOG_TAG} Emitted Username: ${this.post.username}`);
-        this.usernameService.emitData(this.post.username);
+
+        if (this.post !== null && this.post !== undefined) {
+            console.info(`${this.LOG_TAG} Emitted Username: ${this.post.username}`);
+            this.usernameService.emitData(this.post.username);
+        } else {
+            console.info(`${this.LOG_TAG} Did not Emit Username Because Post is null or undefined`);
+        }
     }
 }

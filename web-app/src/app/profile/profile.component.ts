@@ -18,7 +18,7 @@ import {LoadedService} from "../loaded.service";
 export class ProfileComponent implements OnInit, OnDestroy {
 
     public postCount: number;
-    public user: any = {first: 'hey', last: 'yo'};
+    public user: any;
 
     private ngUnsubscribe: Subject<any> = new Subject();
     private LOG_TAG: string = '[Profile.Component]';
