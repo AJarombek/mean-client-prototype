@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CatPictureComponent } from './cat-picture.component';
+import {Router} from "@angular/router";
 
 describe('CatPictureComponent', () => {
   let component: CatPictureComponent;
@@ -8,7 +9,8 @@ describe('CatPictureComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CatPictureComponent ]
+        declarations: [ CatPictureComponent ],
+        providers: [{provide: Router, useClass: class { navigate = jasmine.createSpy("navigate");}}]
     })
     .compileComponents();
   }));

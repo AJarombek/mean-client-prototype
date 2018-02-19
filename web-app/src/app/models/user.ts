@@ -8,7 +8,8 @@ export class User {
 
     constructor(public username: string,
                 public first: string,
-                public last: string) {}
+                public last: string,
+                public postCount?: number) {}
 
     get fullName(): string {
         return `${this.first} ${this.last}`;

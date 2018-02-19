@@ -46,3 +46,4 @@ ng generate component cat-picture
 ng generate service authentication
 ng generate service profile
 ng generate service loaded
+ng generate service username

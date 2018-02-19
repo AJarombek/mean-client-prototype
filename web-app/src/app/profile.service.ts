@@ -24,6 +24,8 @@ export class ProfileService {
         this.userService.get(username).subscribe(res => {
             console.info(`${this.LOG_TAG} Emitting User: ${JSON.stringify(res)}`);
             this.onData.emit(JSON.stringify(res));
+        }, error => {
+            console.info(`${this.LOG_TAG} User does not exist with username: ${username}`);
         });
     }
 

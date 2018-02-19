@@ -16,8 +16,8 @@ export class MockUserService implements HttpService {
 
     getAll(): Observable<[User]> {
         return new Observable<[User]>(o => {
-           o.next([new User("andy", "Andrew", "Jarombek"),
-               new User("test", "Joe", "Test")]);
+           o.next([new User("andy", "Andrew", "Jarombek", 5),
+               new User("test", "Joe", "Test", 1)]);
         });
     }
 
@@ -25,7 +25,7 @@ export class MockUserService implements HttpService {
 
         if (username == "andy") {
             return new Observable<User>(o => {
-                o.next(new User("andy", "Andrew", "Jarombek"));
+                o.next(new User("andy", "Andrew", "Jarombek", 5));
             });
         } else {
             return new Observable<User>(o => {

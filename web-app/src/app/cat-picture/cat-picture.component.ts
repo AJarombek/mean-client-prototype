@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Post} from "../models/post";
+import {UsernameService} from "../username.service";
+import {post} from "selenium-webdriver/http";
 
 /**
  * The component for each cat picture
@@ -14,6 +16,15 @@ import {Post} from "../models/post";
 })
 export class CatPictureComponent {
 
-  // The @Input annotation is used to get an input parameter from the parent component
-  @Input() post: Post;
+    // The @Input annotation is used to get an input parameter from the parent component
+    @Input() post: Post;
+
+    private LOG_TAG: string = '[CatPicture.Component]';
+
+    constructor(private usernameService: UsernameService) {}
+
+    emitUsername() {
+        console.info(`${this.LOG_TAG} Emitted Username: ${this.post.username}`);
+        this.usernameService.emitData(this.post.username);
+    }
 }

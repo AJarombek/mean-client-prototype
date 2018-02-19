@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {PostService} from "../post.service";
 import {MockPostService} from "../mock/mock-post.service";
 import {Post} from "../models/post";
-import {Observable} from "rxjs/Observable";
 
 /**
  * The component that displays all the cat pictures

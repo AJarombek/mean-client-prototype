@@ -1,6 +1,7 @@
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
 import {CatPictureComponent} from "./cat-picture.component";
+import {RouterModule} from "@angular/router";
 
 /**
  * Feature module for the cat picture components
@@ -13,7 +14,8 @@ import {CatPictureComponent} from "./cat-picture.component";
         CatPictureComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        RouterModule
     ],
     providers: [],
     exports: [CatPictureComponent]

@@ -30,8 +30,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
             console.info(`${this.LOG_TAG} Receiving User ${res}`);
 
             this.user = JSON.parse(res);
-            console.info(`${this.LOG_TAG} ${this.user.first}`);
-
         });
 
         // Notify Loaded Service Subscribers (AppComponent) that the Profile Component is laoded
