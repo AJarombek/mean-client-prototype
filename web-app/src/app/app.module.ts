@@ -20,6 +20,7 @@ import {CatPictureModule} from "./cat-picture/cat-picture.module";
 import {ProfileService} from "./profile.service";
 import {LoadedService} from "./loaded.service";
 import {UsernameService} from "./username.service";
+import {ImageUploadModule} from "angular2-image-upload";
 
 /**
  * The main module for the application
@@ -29,9 +30,8 @@ import {UsernameService} from "./username.service";
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
-    {path: 'profile/:username', loadChildren: './profile/profile.module#ProfileModule'},
+    {path: 'user', loadChildren: './profile/profile.module#ProfileModule'},
     {path: 'about', component: AboutComponent},
-    {path: 'profile/post', loadChildren: './profile/profile.module#ProfileModule'},
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent},
     {path: '**', redirectTo: ''}

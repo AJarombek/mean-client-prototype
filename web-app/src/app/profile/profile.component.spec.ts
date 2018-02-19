@@ -4,6 +4,7 @@ import { ProfileComponent } from './profile.component';
 import {ProfileService} from "../profile.service";
 import {MockUserService} from "../mock/mock-user.service";
 import {LoadedService} from "../loaded.service";
+import {ImageUploadModule} from "angular2-image-upload";
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -11,8 +12,13 @@ describe('ProfileComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ImageUploadModule.forRoot()],
       declarations: [ ProfileComponent ],
-      providers: [ProfileService, MockUserService, LoadedService]
+      providers: [
+          ProfileService,
+          MockUserService,
+          LoadedService,
+      ]
     })
     .compileComponents();
   }));

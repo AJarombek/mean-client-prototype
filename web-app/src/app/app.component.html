@@ -29,10 +29,10 @@ Create the HTML for the main page of the web app.  The template uses bootstrap 4
             <nav class="nav navbar-nav flex-sm-row mx-2 mr-auto">
                 <!-- mx-4 : Specify the margin for each element -->
                 <a class="nav-link mx-4" [hidden]="!auth.isAuthenticated"
-                   [routerLink]="['/profile', auth.username || '']"
+                   [routerLink]="['/user/profile', auth.username || '']"
                    (click)="setUsernameToPass(auth.username)">Profile</a>
                 <a class="nav-link mx-4" [hidden]="!auth.isAuthenticated"
-                   [routerLink]="['/profile/post']">Post</a>
+                   [routerLink]="['/user/post']">Post</a>
                 <a class="nav-link mx-4" [routerLink]="['/about']">About</a>
             </nav>
             <div id="nav-buttons" class="nav navbar-nav flex-row">

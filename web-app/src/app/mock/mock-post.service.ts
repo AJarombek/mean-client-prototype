@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class MockPostService {
 
-    private post1: Post = new Post("assets/catpics/russianblue.jpg", "My Cat Pic", "andy", "Andrew",
+    private post1: Post = new Post("assets/catpics/russianblue.jpg", "Cat Pic", "andy", "Andrew",
                                     "Jarombek", new Date(), "I love this picture!", 1, 0);
     private post2: Post = new Post("assets/catpics/toms-cat.jpg", "Kitty!", "tom", "Thomas",
                                     "Caulfield", new Date(), "awww!", 5, 1);

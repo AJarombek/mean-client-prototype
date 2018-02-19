@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ImageUploadModule} from "angular2-image-upload";
 
 @Component({
   selector: 'app-post',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

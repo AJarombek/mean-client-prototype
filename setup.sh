@@ -47,3 +47,6 @@ ng generate service authentication
 ng generate service profile
 ng generate service loaded
 ng generate service username
+
+# An npm module for uploading pictures in Angular 2+
+npm install angular2-image-upload --save

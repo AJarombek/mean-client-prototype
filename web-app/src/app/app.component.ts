@@ -37,7 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
                 private usernameService: UsernameService) {}
 
     /**
-     * Called when the Component is initialized.  HEre we want to subscribe from certain services
+     * Called when the Component is initialized.  Here we want to subscribe to certain services
      */
     ngOnInit(): void {
 

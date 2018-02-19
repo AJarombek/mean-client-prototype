@@ -6,7 +6,7 @@
 
 @import "../login/login.component";
 
-#profile-container {
+#profile-container, #post-container {
   @extend .div-style;
   width: 80%;
 

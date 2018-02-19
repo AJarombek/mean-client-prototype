@@ -5,6 +5,7 @@ import { PostComponent } from './post/post.component';
 import { RouterModule } from "@angular/router";
 import {LoginGuard} from "./login-guard";
 import {MockLoginGuard} from "../mock/mock-login-guard";
+import {ImageUploadModule} from "angular2-image-upload";
 
 /**
  * Feature module for the pages only available to signed in users
@@ -14,7 +15,7 @@ import {MockLoginGuard} from "../mock/mock-login-guard";
 
 // Define routing within the feature module
 export const routes = [
-    {path: '', component: ProfileComponent, canActivate: [LoginGuard]},
+    {path: 'profile/:username', component: ProfileComponent},
     {path: 'post', component: PostComponent, canActivate: [LoginGuard]}
 ];
 
@@ -22,7 +23,8 @@ export const routes = [
 @NgModule({
   imports: [
       CommonModule,
-      RouterModule.forChild(routes)
+      RouterModule.forChild(routes),
+      ImageUploadModule.forRoot()
   ],
   declarations: [ProfileComponent, PostComponent],
   providers: [{provide: LoginGuard, useClass: LoginGuard}], // Use a mock guard until the Node.js API is set up
