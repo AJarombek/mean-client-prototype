@@ -1,8 +1,35 @@
 <div class="container-fluid">
     <div id="post-container" class="container-fluid">
-        <div class="container-fluid">
-            <image-upload [max]="1"></image-upload>
+        <div class="container-fluid" *ngIf="infoUploaded; else upload_picture">
+            <form [formGroup]="formModel" (ngSubmit)="onNext()">
+                <input type="text" formControlName="name" maxlength="15" placeholder="Name"><br>
+                <!-- Show this error if the form has a required error and the field has been touched by the user -->
+                <span [hidden]="!formModel.hasError('required', ['name']) || !formModel.get('name').dirty">
+                    Name is Required
+                </span>
+                <input type="text" formControlName="description" maxlength="15" placeholder="Description"><br>
+                <span [hidden]="!formModel.hasError('required', ['description'])
+                                || !formModel.get('description').dirty">
+                    Name is Required
+                </span>
+                <button [ngClass]="{'in-progress': inProgressInfo}" type="submit" [disabled]="!formModel.valid">
+                    {{nextText}}
+                </button><br>
+                <span [hidden]="!postInfoError">
+                    {{postInfoError}}
+                </span>
+            </form>
         </div>
 
+        <ng-template #upload_picture>
+            <image-upload [max]="1"></image-upload>
+            <button type="submit" (click)="onBack()">Back</button>
+            <button [ngClass]="{'in-progress': inProgressPicture}" type="submit" (click)="onSubmit()">
+                {{submitText}}
+            </button><br>
+            <span [hidden]="!postPictureError">
+                {{postPictureError}}
+            </span>
+        </ng-template>
     </div>
 </div>

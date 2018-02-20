@@ -10,9 +10,9 @@ import {Observable} from "rxjs/Observable";
 export interface HttpService {
 
     getAll(): Observable<[any]>;
-    get(name: string): Observable<any>;
+    get(name: any): Observable<any>;
     post(item: any): Observable<any>;
     put(item: any): Observable<any>;
     patch?(name: string, data: {[key: string]: any}): Observable<any>;
-    delete(name: string): Observable<any>;
+    delete(name: any): Observable<any>;
 }
