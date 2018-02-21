@@ -28,6 +28,8 @@ export class LoginComponent {
   public formModel: FormGroup;
   public loginError: string = null;
 
+  private LOG_TAG: string = '[Login.Component]';
+
   constructor(private fb: FormBuilder,
               private router: Router,
               public auth: Auth,
@@ -56,7 +58,7 @@ export class LoginComponent {
             this.submitDone();
           });
     } else {
-      console.error('The form is not valid');
+      console.error(`${this.LOG_TAG} The form is not valid`);
     }
   }
 

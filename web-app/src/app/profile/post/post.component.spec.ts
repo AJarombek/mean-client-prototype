@@ -5,6 +5,7 @@ import {ImageUploadModule} from "angular2-image-upload";
 import {ImageService} from "angular2-image-upload/lib/image-upload/image.service";
 import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "../../auth";
+import {Router} from "@angular/router";
 
 describe('PostComponent', () => {
   let component: PostComponent;
@@ -15,6 +16,7 @@ describe('PostComponent', () => {
         imports: [ImageUploadModule, ReactiveFormsModule],
         declarations: [ PostComponent ],
         providers: [
+            {provide: Router, useClass: class { navigate = jasmine.createSpy("navigate");}},
             ImageService,
             FormsModule,
             ReactiveFormsModule,
