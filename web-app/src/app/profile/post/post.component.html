@@ -2,12 +2,22 @@
     <div id="post-container" class="container-fluid">
         <div class="container-fluid" *ngIf="!infoUploaded; else upload_picture">
             <form [formGroup]="formModel" (ngSubmit)="onNext()">
-                <input type="text" formControlName="name" maxlength="15" placeholder="Name"><br>
+                <input type="text"
+                       #postName
+                       formControlName="name"
+                       maxlength="15"
+                       placeholder="Name"><br>
+
                 <!-- Show this error if the form has a required error and the field has been touched by the user -->
                 <span [hidden]="!formModel.hasError('required', ['name']) || !formModel.get('name').dirty">
                     Name is Required<br>
                 </span>
-                <input type="text" formControlName="description" maxlength="15" placeholder="Description"><br>
+                <input type="text"
+                       #postDescription
+                       formControlName="description"
+                       maxlength="15"
+                       placeholder="Description"><br>
+
                 <span [hidden]="!formModel.hasError('required', ['description'])
                                 || !formModel.get('description').dirty">
                     Description is Required<br>
@@ -22,7 +32,12 @@
         </div>
 
         <ng-template #upload_picture>
-            <div class="container-fluid">
+            <!-- Use *ngIf instead of [hidden]. *ngIf will actually remove and add the html to the DOM while -->
+            <!-- [hidden] will actually use CSS styles to hide the contents.  This can cause issues since you -->
+            <!-- can actually mistakenly override these hidden styles in your stylesheet! -->
+
+            <!-- Show the image upload contents before the upload is completed -->
+            <div class="container-fluid" *ngIf="!uploadCompleted">
                 <image-upload [max]="1"
                               buttonCaption="Upload Image"
                               dropBoxMessage="Drop Image Here!"
@@ -42,6 +57,13 @@
                         {{postPictureError}}
                     </span>
                 </div>
+            </div>
+
+            <!-- Show the post success contents after the upload is completed -->
+            <div class="container-fluid" *ngIf="uploadCompleted">
+                <img class="img-fluid logo" src="../../../assets/logoAlt.png">
+                <p>Cat Posted Successfully!</p>
+                <button id="continue-button" type="submit" (click)="onContinue()">Back</button>
             </div>
         </ng-template>
     </div>

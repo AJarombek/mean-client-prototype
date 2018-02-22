@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {FileHolder, ImageUploadModule} from "angular2-image-upload";
 import {FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Auth} from "../../auth";
@@ -21,6 +21,13 @@ import {Router} from "@angular/router";
 })
 export class PostComponent {
 
+    // Access the local template variables for both <input> HTML elements
+    @ViewChild('postName') postName: ElementRef;
+    @ViewChild('postDescription') postDescription: ElementRef;
+
+    private postNameValue: string = "";
+    private postDescriptionValue: string = "";
+
     // Is the post information process in progress
     public inProgressInfo: boolean = false;
 
@@ -39,6 +46,9 @@ export class PostComponent {
     // If the picture in part II has been uploaded
     public pictureUploaded: boolean = false;
 
+    // If the entire post upload process is finished
+    public uploadCompleted: boolean = false;
+
     // What text is displayed on the next button
     public nextText: string = 'Next';
 
@@ -47,6 +57,9 @@ export class PostComponent {
 
     // The new post object that is being built
     public newPost: Post = new Post();
+
+    // The file that is being uploaded
+    private file: FileHolder;
 
     public formModel: FormGroup;
     private LOG_TAG: string = '[Post.Component]';
@@ -67,6 +80,12 @@ export class PostComponent {
         this.newPost.name = this.formModel.value.name;
         this.newPost.description = this.formModel.value.description;
 
+        this.postNameValue = this.postName.nativeElement.value;
+        this.postDescriptionValue = this.postDescription.nativeElement.value;
+
+        this.postName.nativeElement.value = null;
+        this.postDescription.nativeElement.value = null;
+
         this.infoUploaded = true;
     }
 
@@ -76,7 +95,8 @@ export class PostComponent {
         this.submitText = "Submitting...";
 
         this.postService.post(this.newPost).subscribe(() => {
-            this.router.navigate(['/']);
+            // this.router.navigate(['/']);
+            this.uploadCompleted = true;
             this.reset();
         }, err => {
             this.postPictureError = "Failed to Upload Picture to Server";
@@ -86,10 +106,19 @@ export class PostComponent {
     onBack() {
         this.postPictureError = null;
         this.infoUploaded = false;
+
+        this.postName.nativeElement.value = this.postNameValue;
+        this.postDescription.nativeElement.value = this.postDescriptionValue;
+    }
+
+    onContinue() {
+        this.infoUploaded = false;
+        this.uploadCompleted = false;
     }
 
     imageUploaded(file: FileHolder) {
         console.info(`${this.LOG_TAG} imageUploaded Called`);
+        this.file = file;
         this.newPost.picture = file.file.name;
         this.pictureUploaded = true;
     }
@@ -97,6 +126,7 @@ export class PostComponent {
     imageRemoved(file: FileHolder) {
         console.info(`${this.LOG_TAG} imageRemoved Called`);
         this.pictureUploaded = false;
+        this.file = undefined;
     }
 
     /**
@@ -111,5 +141,9 @@ export class PostComponent {
         this.submitText = 'Submit';
         this.postPictureError = null;
         this.postInfoError = null;
+
+        this.postNameValue = "";
+        this.postDescriptionValue = "";
+        this.file = undefined;
     }
 }
