@@ -21,6 +21,7 @@ import {ProfileService} from "./profile.service";
 import {LoadedService} from "./loaded.service";
 import {UsernameService} from "./username.service";
 import {ImageUploadModule} from "angular2-image-upload";
+import { SpyDirective } from './spy.directive';
 
 /**
  * The main module for the application
@@ -53,6 +54,7 @@ export const routes: Routes = [
       AboutComponent,
       LoginComponent,
       SignupComponent,
+      SpyDirective,
   ],
   imports: [
       BrowserModule,

@@ -50,3 +50,6 @@ ng generate service username
 
 # An npm module for uploading pictures in Angular 2+
 npm install angular2-image-upload --save
+
+ng generate directive spy
+ng generate service lifecycle
