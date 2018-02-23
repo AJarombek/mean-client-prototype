@@ -1,11 +1,15 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FileHolder, ImageUploadModule} from "angular2-image-upload";
 import {FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Auth} from "../../auth";
 import {Post} from "../../models/post";
 import {PostService} from "../../post.service";
 import {MockPostService} from "../../mock/mock-post.service";
-import {Router} from "@angular/router";
+import {SpyDirective} from "../../shared/spy.directive";
+import {Subject} from "rxjs/Subject";
+import {LifecycleService} from "../../shared/lifecycle.service";
+import {Lifecycle} from "../../models/lifecycle";
+import {takeUntil} from "rxjs/operators";
 
 /**
  * Component for uploading a new cat picture post
@@ -19,7 +23,7 @@ import {Router} from "@angular/router";
     styleUrls: ['./post.component.scss'],
     providers: [{provide: PostService, useClass: MockPostService}]
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
 
     // Access the local template variables for both <input> HTML elements
     @ViewChild('postName') postName: ElementRef;
@@ -62,12 +66,13 @@ export class PostComponent {
     private file: FileHolder;
 
     public formModel: FormGroup;
+    private ngUnsubscribe: Subject<any> = new Subject();
     private LOG_TAG: string = '[Post.Component]';
 
     constructor(private fb: FormBuilder,
                 private auth: Auth,
                 private postService: PostService,
-                private router: Router) {
+                private lifecycleService: LifecycleService) {
 
         this.formModel = fb.group({
             'name': ['', Validators.required],
@@ -75,27 +80,60 @@ export class PostComponent {
         });
     }
 
+    /**
+     * Called when the post component is first initialized
+     */
+    ngOnInit(): void {
+
+        // Subscribe to the lifecycle service to know when the description and name input fields are
+        // initialized or destroyed
+        this.lifecycleService.onData.pipe(takeUntil(this.ngUnsubscribe)).subscribe(res => {
+            console.info(`${this.LOG_TAG} Receiving Lifecycle Notification: ${res}`);
+
+            const status: Lifecycle = JSON.parse(res);
+
+            if (status.event === 'init') {
+                // If the lifecycle event is [init] set the HTML elements value to the cached value
+                // When first loaded the ElementRef objects can be undefined, so make sure they exist
+                if (status.id === 'post-name' && this.postName !== undefined) {
+                    this.postName.nativeElement.value = this.postNameValue.trim();
+                } else if (status.id === 'post-description' && this.postDescription !== undefined) {
+                    this.postDescription.nativeElement.value = this.postDescriptionValue.trim();
+                }
+            } else if (status.event === 'destroy') {
+                // If the lifecycle event is [destroy] cache the value of the HTML element when it was terminated
+                if (status.id === 'post-name') {
+                    this.postNameValue = status.value;
+                } else if (status.id === 'post-description') {
+                    this.postDescriptionValue = status.value;
+                }
+            }
+        });
+    }
+
+    /**
+     * Called when the post name and description fields are filled out.  You are then taken to the picture upload page
+     */
     onNext() {
         this.newPost.username = this.auth.username;
         this.newPost.name = this.formModel.value.name;
         this.newPost.description = this.formModel.value.description;
 
-        this.postNameValue = this.postName.nativeElement.value;
-        this.postDescriptionValue = this.postDescription.nativeElement.value;
-
-        this.postName.nativeElement.value = null;
-        this.postDescription.nativeElement.value = null;
-
+        // Removes the info upload template and displays the picture upload template
         this.infoUploaded = true;
     }
 
+    /**
+     * Called when the picture is submitted and we are ready to create a new post
+     */
     onSubmit() {
         console.info(`Submitting Post: ${JSON.stringify(this.newPost)}`);
         this.inProgressPicture = true;
         this.submitText = "Submitting...";
 
         this.postService.post(this.newPost).subscribe(() => {
-            // this.router.navigate(['/']);
+
+            // On completion display the completed template and reset all the fields to their defaults
             this.uploadCompleted = true;
             this.reset();
         }, err => {
@@ -103,19 +141,27 @@ export class PostComponent {
         });
     }
 
+    /**
+     * When going back to the info upload page from the picture upload page
+     */
     onBack() {
         this.postPictureError = null;
         this.infoUploaded = false;
-
-        this.postName.nativeElement.value = this.postNameValue;
-        this.postDescription.nativeElement.value = this.postDescriptionValue;
     }
 
+    /**
+     * When continuing from the completed page back to the info upload page.
+     * This allows the user to upload another post.
+     */
     onContinue() {
         this.infoUploaded = false;
         this.uploadCompleted = false;
     }
 
+    /**
+     * Called by the image upload module when a new picture is added
+     * @param {FileHolder} file
+     */
     imageUploaded(file: FileHolder) {
         console.info(`${this.LOG_TAG} imageUploaded Called`);
         this.file = file;
@@ -123,6 +169,10 @@ export class PostComponent {
         this.pictureUploaded = true;
     }
 
+    /**
+     * Called by the image upload module when the uploaded picture is deleted
+     * @param {FileHolder} file
+     */
     imageRemoved(file: FileHolder) {
         console.info(`${this.LOG_TAG} imageRemoved Called`);
         this.pictureUploaded = false;

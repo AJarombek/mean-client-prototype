@@ -1,4 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
+import {NotifyService} from "./notify.service";
 
 /**
  * Service that allows you to emit a username to other components.  The current use is to pass a username from the
@@ -8,7 +9,7 @@ import {EventEmitter, Injectable} from '@angular/core';
  */
 
 @Injectable()
-export class UsernameService {
+export class UsernameService implements NotifyService {
 
     public onData: EventEmitter<string> = new EventEmitter<string>();
 

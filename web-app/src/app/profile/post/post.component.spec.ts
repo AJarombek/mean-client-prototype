@@ -6,6 +6,7 @@ import {ImageService} from "angular2-image-upload/lib/image-upload/image.service
 import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "../../auth";
 import {Router} from "@angular/router";
+import {LifecycleService} from "../../shared/lifecycle.service";
 
 describe('PostComponent', () => {
   let component: PostComponent;
@@ -21,7 +22,8 @@ describe('PostComponent', () => {
             FormsModule,
             ReactiveFormsModule,
             Validators,
-            Auth
+            Auth,
+            LifecycleService
         ]
     })
     .compileComponents();

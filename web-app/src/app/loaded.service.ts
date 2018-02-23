@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {logger} from "codelyzer/util/logger";
+import {NotifyService} from "./notify.service";
 
 /**
  * A service that allows you to emit a notification that a child component is loaded
@@ -8,7 +9,7 @@ import {logger} from "codelyzer/util/logger";
  */
 
 @Injectable()
-export class LoadedService {
+export class LoadedService implements NotifyService {
 
     public onData: EventEmitter<string> = new EventEmitter<string>();
 

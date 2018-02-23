@@ -1,5 +1,6 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {MockUserService} from "./mock/mock-user.service";
+import {NotifyService} from "./notify.service";
 
 /**
  * A service that allows you to emit user data to subscribed components
@@ -8,7 +9,7 @@ import {MockUserService} from "./mock/mock-user.service";
  */
 
 @Injectable()
-export class ProfileService {
+export class ProfileService implements NotifyService {
 
     public onData: EventEmitter<string> = new EventEmitter<string>();
 

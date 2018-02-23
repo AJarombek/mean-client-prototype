@@ -2,8 +2,10 @@
     <div id="post-container" class="container-fluid">
         <div class="container-fluid" *ngIf="!infoUploaded; else upload_picture">
             <form [formGroup]="formModel" (ngSubmit)="onNext()">
-                <input type="text"
+                <input id="post-name"
+                       type="text"
                        #postName
+                       spy
                        formControlName="name"
                        maxlength="15"
                        placeholder="Name"><br>
@@ -12,8 +14,10 @@
                 <span [hidden]="!formModel.hasError('required', ['name']) || !formModel.get('name').dirty">
                     Name is Required<br>
                 </span>
-                <input type="text"
+                <input id="post-description"
+                       type="text"
                        #postDescription
+                       spy
                        formControlName="description"
                        maxlength="15"
                        placeholder="Description"><br>

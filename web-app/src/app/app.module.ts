@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 
 import {AppComponent} from './app.component';
@@ -7,7 +7,6 @@ import {HomeComponent} from "./home/home.component";
 import {SignupComponent} from "./signup/signup.component";
 import {LoginComponent} from "./login/login.component";
 import {AboutComponent} from "./about/about.component";
-import { CatPictureComponent } from './cat-picture/cat-picture.component';
 import {PostService} from "./post.service";
 import {MockPostService} from "./mock/mock-post.service";
 import {AuthenticationService} from "./authentication.service";
@@ -20,8 +19,7 @@ import {CatPictureModule} from "./cat-picture/cat-picture.module";
 import {ProfileService} from "./profile.service";
 import {LoadedService} from "./loaded.service";
 import {UsernameService} from "./username.service";
-import {ImageUploadModule} from "angular2-image-upload";
-import { SpyDirective } from './spy.directive';
+import {SharedModule} from "./shared/shared.module";
 
 /**
  * The main module for the application
@@ -53,8 +51,7 @@ export const routes: Routes = [
       HomeComponent,
       AboutComponent,
       LoginComponent,
-      SignupComponent,
-      SpyDirective,
+      SignupComponent
   ],
   imports: [
       BrowserModule,
@@ -62,7 +59,8 @@ export const routes: Routes = [
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      CatPictureModule
+      CatPictureModule,
+      SharedModule
   ],
   providers: [
       PostService,

@@ -7,6 +7,8 @@ import {LoginGuard} from "./login-guard";
 import {MockLoginGuard} from "../mock/mock-login-guard";
 import {ImageUploadModule} from "angular2-image-upload";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SpyDirective} from "../shared/spy.directive";
+import {SharedModule} from "../shared/shared.module";
 
 /**
  * Feature module for the pages only available to signed in users
@@ -27,7 +29,8 @@ export const routes = [
       RouterModule.forChild(routes),
       ImageUploadModule.forRoot(),
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      SharedModule
   ],
   declarations: [ProfileComponent, PostComponent],
   providers: [{provide: LoginGuard, useClass: LoginGuard}], // Use a mock guard until the Node.js API is set up
