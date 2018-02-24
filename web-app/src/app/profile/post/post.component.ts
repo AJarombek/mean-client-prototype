@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FileHolder, ImageUploadModule} from "angular2-image-upload";
-import {FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators, FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Auth} from "../../auth";
 import {Post} from "../../models/post";
 import {PostService} from "../../post.service";
@@ -10,6 +10,7 @@ import {Subject} from "rxjs/Subject";
 import {LifecycleService} from "../../shared/lifecycle.service";
 import {Lifecycle} from "../../models/lifecycle";
 import {takeUntil} from "rxjs/operators";
+import {noWhitespaceValidator} from "../../shared/no-whitespace.validator";
 
 /**
  * Component for uploading a new cat picture post
@@ -75,9 +76,13 @@ export class PostComponent implements OnInit {
                 private lifecycleService: LifecycleService) {
 
         this.formModel = fb.group({
-            'name': ['', Validators.required],
-            'description': ['', Validators.required]
+            'name': ['', [Validators.required, noWhitespaceValidator()]],
+            'description': ['', [Validators.required, noWhitespaceValidator()]]
         });
+    }
+
+    debug(input: any) {
+        console.info(input);
     }
 
     /**

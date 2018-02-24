@@ -8,7 +8,8 @@
       <div>
         <input type="text" formControlName="username" maxlength="15" placeholder="Username"><br>
         <!-- Show this error if the form has a required error and the field has been touched by the user -->
-        <span [hidden]="!formModel.hasError('required', ['username']) || !formModel.get('username').dirty">
+        <span [hidden]="!formModel.hasError('required', ['username'])
+                         || !formModel.get('username').dirty">
           Username is Required
         </span>
         <span [hidden]="!formModel.hasError('pattern', ['username'])">
@@ -17,7 +18,8 @@
       </div>
       <div>
         <input type="text" formControlName="first" maxlength="31" placeholder="First Name"><br>
-        <span [hidden]="!formModel.hasError('required', ['first']) || !formModel.get('first').dirty">
+        <span [hidden]="!formModel.hasError('required', ['first'])
+                        || !formModel.get('first').dirty">
           First Name is Required
         </span>
         <span [hidden]="!formModel.hasError('pattern', ['first'])">
@@ -26,7 +28,8 @@
       </div>
       <div>
         <input type="text" formControlName="last" maxlength="31" placeholder="Last Name"><br>
-        <span [hidden]="!formModel.hasError('required', ['last']) || !formModel.get('last').dirty">
+        <span [hidden]="!formModel.hasError('required', ['last'])
+                        || !formModel.get('last').dirty">
           Last Name is Required
         </span>
         <span [hidden]="!formModel.hasError('pattern', ['last'])">
@@ -36,10 +39,14 @@
 
       <div formGroupName="pwGroup">
         <div>
-          <input type="password" formControlName="password" maxlength="63" placeholder="Password"><br>
-          <span [hidden]="!formModel.hasError('required', ['pwGroup', 'password']) ||
-                !formModel.get(['pwGroup', 'password']).dirty">
+          <input type="text" formControlName="password" maxlength="63" placeholder="Password"><br>
+          <span [hidden]="!formModel.hasError('required', ['pwGroup', 'password'])
+                          || !formModel.get(['pwGroup', 'password']).dirty">
             Password is Required
+          </span>
+          <span [hidden]="!formModel.hasError('pattern', ['pwGroup', 'password'])
+                          || formModel.hasError('minlength', ['pwGroup', 'password'])">
+            Password Can't Contain Whitespace
           </span>
           <span [hidden]="!formModel.hasError('minlength', ['pwGroup', 'password']) ||
                 !formModel.get(['pwGroup', 'password']).dirty">
@@ -48,8 +55,8 @@
         </div>
         <div>
           <input type="password" formControlName="pwConfirm" maxlength="63" placeholder="Confirm Password"><br>
-          <span [hidden]="!formModel.hasError('required', ['pwGroup', 'pwConfirm']) ||
-                !formModel.get(['pwGroup', 'pwConfirm']).dirty">
+          <span [hidden]="!formModel.hasError('required', ['pwGroup', 'pwConfirm'])
+                          || !formModel.get(['pwGroup', 'pwConfirm']).dirty">
             Password Confirm is Required
           </span>
           <span [hidden]="!formModel.hasError('equal', ['pwGroup']) || !formModel.get(['pwGroup', 'password']).dirty

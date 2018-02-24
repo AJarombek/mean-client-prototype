@@ -11,7 +11,9 @@
                        placeholder="Name"><br>
 
                 <!-- Show this error if the form has a required error and the field has been touched by the user -->
-                <span [hidden]="!formModel.hasError('required', ['name']) || !formModel.get('name').dirty">
+                <span [hidden]="(!formModel.hasError('required', ['name'])
+                                && !formModel.hasError('whitespace', ['name']))
+                                || !formModel.get('name').dirty">
                     Name is Required<br>
                 </span>
                 <input id="post-description"
@@ -22,7 +24,8 @@
                        maxlength="15"
                        placeholder="Description"><br>
 
-                <span [hidden]="!formModel.hasError('required', ['description'])
+                <span [hidden]="(!formModel.hasError('required', ['description'])
+                                && !formModel.hasError('whitespace', ['description']))
                                 || !formModel.get('description').dirty">
                     Description is Required<br>
                 </span>

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {Router} from "@angular/router";
 import {Auth} from "../auth";
 import {AuthenticationService} from "../authentication.service";
+import {noWhitespaceValidator} from "../shared/no-whitespace.validator";
 
 /**
  * Component for signing up users
@@ -40,9 +41,9 @@ export class SignupComponent {
                       Validators.pattern("^[a-zA-Z\-']+$")]],
             'pwGroup': fb.group({
                 'password': ['', [Validators.required, Validators.minLength(6),
-                              Validators.maxLength(63)]],
+                              Validators.maxLength(63), Validators.pattern("^[^\\s]+$")]],
                 'pwConfirm': ['', [Validators.required, Validators.minLength(6),
-                              Validators.maxLength(63)]]
+                              Validators.maxLength(63), noWhitespaceValidator()]]
             }, {validator: this.equalValidator})
         });
     }
