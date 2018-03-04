@@ -76,8 +76,8 @@ export class PostComponent implements OnInit {
                 private lifecycleService: LifecycleService) {
 
         this.formModel = fb.group({
-            'name': ['', [Validators.required, noWhitespaceValidator()]],
-            'description': ['', [Validators.required, noWhitespaceValidator()]]
+            'name': ['', [Validators.required, noWhitespaceValidator(), Validators.maxLength(63)]],
+            'description': ['', [Validators.required, noWhitespaceValidator(), Validators.maxLength(511)]]
         });
     }
 

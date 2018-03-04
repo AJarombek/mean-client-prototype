@@ -7,7 +7,7 @@
                        #postName
                        spy
                        formControlName="name"
-                       maxlength="15"
+                       maxlength="63"
                        placeholder="Name"><br>
 
                 <!-- Show this error if the form has a required error and the field has been touched by the user -->
@@ -21,7 +21,7 @@
                        #postDescription
                        spy
                        formControlName="description"
-                       maxlength="15"
+                       maxlength="511"
                        placeholder="Description"><br>
 
                 <span [hidden]="(!formModel.hasError('required', ['description'])

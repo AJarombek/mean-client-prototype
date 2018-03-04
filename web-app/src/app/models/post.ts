@@ -17,5 +17,6 @@ export class Post {
                 public description?: string,
                 public up?: number,
                 public down?: number,
-                public id?: number) {}
+                public id?: number,
+                public pictureData?: string) {}
 }

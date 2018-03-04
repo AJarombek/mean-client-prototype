@@ -53,3 +53,6 @@ npm install angular2-image-upload --save
 
 ng generate directive spy
 ng generate service lifecycle
+
+# Moment helps us deal with time in an angular application
+npm install moment --save

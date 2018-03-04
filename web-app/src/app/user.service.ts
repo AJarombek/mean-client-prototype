@@ -32,8 +32,10 @@ export class UserService implements HttpService {
         return this.http.put<User>(`${appConfig.apiDev}/users/${user.username}`, user);
     }
 
-    patch(username: string, json: {[key: string]: any}): Observable<User> {
-        return this.http.patch<User>(`${appConfig.apiDev}/users/${username}`, json);
+    patch(username: string, json: {[key: string]: any}): Observable<any> {
+        return new Observable<any>(o => {
+            o.next("No PATCH endpoint set for users");
+        });
     }
 
     delete(username: string): Observable<any> {

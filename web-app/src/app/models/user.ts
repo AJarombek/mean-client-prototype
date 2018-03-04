@@ -9,7 +9,8 @@ export class User {
     constructor(public username: string,
                 public first: string,
                 public last: string,
-                public postCount?: number) {}
+                public postCount?: number,
+                public password?: string) {}
 
     get fullName(): string {
         return `${this.first} ${this.last}`;

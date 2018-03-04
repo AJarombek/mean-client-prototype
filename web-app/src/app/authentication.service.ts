@@ -4,6 +4,7 @@ import {appConfig} from "./app.config";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {Auth} from "./auth";
+import * as moment from "moment";
 
 /**
  * Service for authenticating users and setting up / taking down user sessions
@@ -13,6 +14,8 @@ import {Auth} from "./auth";
 
 @Injectable()
 export class AuthenticationService {
+
+  private SECOND = 'second';
 
   private loginUrl = '/auth/login';
 
@@ -27,14 +30,19 @@ export class AuthenticationService {
   login(username: string, password: string) {
     // http.post() returns an observable.  We use rxjs map() function to access the response
     return this.http.post<any>(`${appConfig.apiDev}${this.loginUrl}`, { username: username, password: password})
-        .map(user => {
+        .map(jwtAuth => {
 
-          // Add the user to local storage if the token property exists
+          // Add the JWT to localStorage
           // This is to create a session that will keep the user logged in.  LocalStorage items have no expiration date
-          if (user && user.token) {
-            localStorage.setItem('user', JSON.stringify(user));
+          if (jwtAuth) {
             this.auth.isAuthenticated = true;
-            this.auth.username = user;
+            this.auth.username = username;
+
+            // Get the time that the JWT expires by adding the current time and the expires in time
+            const expiresAt: moment.Moment = moment().add(jwtAuth.expires, this.SECOND);
+
+            localStorage.setItem('id_token', jwtAuth.idToken);
+            localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
 
             return new Observable(data => {
                 data.next('Signed In!');
@@ -51,8 +59,26 @@ export class AuthenticationService {
    * Log out the current user by removing the session from LocalStorage
    */
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
     this.auth.isAuthenticated = false;
     this.auth.username = null;
+  }
+
+    /**
+     * Determine if the user is logged in based on the JWT expiration date
+     * @returns {boolean}
+     */
+  isLoggedIn() {
+      return moment().isBefore(this.getExpiration());
+  }
+
+    /**
+     * Get the expiration date of the JWT session from localStorage
+     * @returns {moment.Moment}
+     */
+  getExpiration(): moment.Moment {
+      const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+      return moment(expiresAt);
   }
 }
