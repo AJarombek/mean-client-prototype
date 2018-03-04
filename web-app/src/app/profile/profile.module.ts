@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './profile.component';
 import { PostComponent } from './post/post.component';
-import { RouterModule } from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 import {LoginGuard} from "./login-guard";
 import {MockLoginGuard} from "../mock/mock-login-guard";
 import {ImageUploadModule} from "angular2-image-upload";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {SpyDirective} from "../shared/spy.directive";
 import {SharedModule} from "../shared/shared.module";
+import {environment} from "../../environments/environment";
+import {AuthenticationService} from "../authentication.service";
 
 /**
  * Feature module for the pages only available to signed in users
@@ -32,8 +33,26 @@ export const routes = [
       ReactiveFormsModule,
       SharedModule
   ],
-  declarations: [ProfileComponent, PostComponent],
-  providers: [{provide: LoginGuard, useClass: LoginGuard}], // Use a mock guard until the Node.js API is set up
-  exports: [ProfileComponent, PostComponent]
+  declarations: [
+      ProfileComponent,
+      PostComponent
+  ],
+  providers: [
+      {
+          provide: LoginGuard,
+          useFactory: (router: Router, authService: AuthenticationService) => {
+              if (environment.useMocks) {
+                  return new MockLoginGuard(router);
+              } else {
+                  return new LoginGuard(router, authService);
+              }
+          },
+          deps: [Router, AuthenticationService]
+      }
+  ],
+  exports: [
+      ProfileComponent,
+      PostComponent
+  ]
 })
 export class ProfileModule { }

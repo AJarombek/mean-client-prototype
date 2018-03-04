@@ -1,9 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from "./authentication.service";
-import {MockAuthenticationService} from "./mock/mock-authentication.service";
 import {Auth} from "./auth";
 import {ProfileService} from "./profile.service";
-import {MockUserService} from "./mock/mock-user.service";
 import {Subject} from "rxjs/Subject";
 import {LoadedService} from "./loaded.service";
 import {takeUntil} from "rxjs/operators";
@@ -16,15 +14,9 @@ import {UsernameService} from "./username.service";
  */
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [
-      {provide: AuthenticationService, useClass: MockAuthenticationService},
-      Auth,
-      ProfileService,
-      MockUserService
-  ]
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
 

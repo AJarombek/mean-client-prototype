@@ -11,7 +11,7 @@ import {PostService} from "./post.service";
 import {MockPostService} from "./mock/mock-post.service";
 import {AuthenticationService} from "./authentication.service";
 import {MockAuthenticationService} from "./mock/mock-authentication.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "./auth";
 import {UserService} from "./user.service";
@@ -20,6 +20,8 @@ import {ProfileService} from "./profile.service";
 import {LoadedService} from "./loaded.service";
 import {UsernameService} from "./username.service";
 import {SharedModule} from "./shared/shared.module";
+import {environment} from "../environments/environment";
+import {MockUserService} from "./mock/mock-user.service";
 
 /**
  * The main module for the application
@@ -35,6 +37,8 @@ export const routes: Routes = [
     {path: 'signup', component: SignupComponent},
     {path: '**', redirectTo: ''}
 ];
+
+const useMocks: boolean = environment.useMocks;
 
 /**
  * @NgModule configures an Angular module, helping to organize the application into components
@@ -63,13 +67,41 @@ export const routes: Routes = [
       SharedModule
   ],
   providers: [
-      PostService,
-      MockPostService,
-      AuthenticationService,
-      MockAuthenticationService,
+      {
+          provide: PostService,
+          useFactory: (httpClient: HttpClient) => {
+              if (environment.useMocks) {
+                  return new MockPostService();
+              } else {
+                  return new PostService(httpClient);
+              }
+          },
+          deps: [HttpClient]
+      },
+      {
+          provide: UserService,
+          useFactory: (httpClient: HttpClient) => {
+              if (environment.useMocks) {
+                  return new MockUserService();
+              } else {
+                  return new UserService(httpClient);
+              }
+          },
+          deps: [HttpClient]
+      },
+      {
+          provide: AuthenticationService,
+          useFactory: (auth: Auth, httpClient: HttpClient) => {
+              if (environment.useMocks) {
+                  return new MockAuthenticationService(auth);
+              } else {
+                  return new AuthenticationService(httpClient, auth);
+              }
+          },
+          deps: [Auth, HttpClient]
+      },
       Validators,
       Auth,
-      UserService,
       ProfileService,
       LoadedService,
       UsernameService

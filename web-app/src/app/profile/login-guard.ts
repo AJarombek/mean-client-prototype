@@ -1,5 +1,6 @@
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {Injectable} from "@angular/core";
+import {AuthenticationService} from "../authentication.service";
 
 /**
  * A guard that checks to see if a user is signed in
@@ -12,7 +13,7 @@ export class LoginGuard implements CanActivate {
 
     private LOG_TAG: string = '[LoginGuard]';
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, private authService: AuthenticationService) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         console.info(`${this.LOG_TAG} Navigating to URL Behind Login Guard`);
@@ -21,7 +22,7 @@ export class LoginGuard implements CanActivate {
 
     private isLoggedIn(state: RouterStateSnapshot): boolean {
 
-        if (localStorage.getItem('user')) {
+        if (this.authService.isLoggedIn()) {
             return true;
         }
 
