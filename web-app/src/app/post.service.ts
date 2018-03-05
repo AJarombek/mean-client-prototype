@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {Post} from "./models/post";
 import {HttpClient} from "@angular/common/http";
-import {appConfig} from "./app.config";
 import {Observable} from "rxjs/Observable";
 import {HttpService} from "./http.service";
+import {environment} from "../environments/environment";
 
 /**
  * Service for meow cat posts
@@ -28,24 +28,22 @@ export class PostService implements HttpService {
      * @returns {Observable<[Post]>}
      */
     getAll(): Observable<[any]> {
-        return this.http.get<[Post]>(`${appConfig.apiDev}/posts`).map(posts => {
-            return posts;
-        });
+        return this.http.get<[Post]>(`/api/post`);
     }
 
     get(id: number): Observable<any> {
-        return this.http.get<Post>(`${appConfig.apiDev}/posts/${id}`);
+        return this.http.get<Post>(`/api/post/${id}`);
     }
 
     post(post: Post): Observable<any> {
-        return this.http.post<Post>(`${appConfig.apiDev}/posts`, post);
+        return this.http.post<Post>(`/api/post`, post);
     }
 
     put(post: Post): Observable<any> {
-        return this.http.put<Post>(`${appConfig.apiDev}/posts/${post.id}`, post);
+        return this.http.put<Post>(`/api/post/${post.id}`, post);
     }
 
     delete(id: number): Observable<any> {
-        return this.http.delete<any>(`${appConfig.apiDev}/posts/${id}`);
+        return this.http.delete<any>(`/api/post/${id}`);
     }
 }

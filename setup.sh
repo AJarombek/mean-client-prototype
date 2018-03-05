@@ -56,3 +56,9 @@ ng generate service lifecycle
 
 # Moment helps us deal with time in an angular application
 npm install moment --save
+
+# Serve the application in our DEV environment with a proxy.  The proxy is configured in proxy.config.json
+# The proxy sits in between the Angular app and the Node.js backend API.  The proxy hijacks URL's and sends them
+# to the backend.  We use it to avoid CORS errors (Cross-Origin Resource Sharing).
+# https://juristr.com/blog/2016/11/configure-proxy-api-angular-cli/
+ng serve --proxy-config proxy.config.json

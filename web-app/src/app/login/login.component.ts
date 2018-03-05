@@ -14,8 +14,7 @@ import {Auth} from "../auth";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  providers: [{provide: AuthenticationService, useClass: MockAuthenticationService}]
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 

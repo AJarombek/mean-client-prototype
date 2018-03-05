@@ -7,6 +7,7 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'localhost:3000/api/',
-    useMocks: false
+    apiUrl: 'http://localhost:4200/api/',
+    useMocks: false,
+    evt: "dev"
 };

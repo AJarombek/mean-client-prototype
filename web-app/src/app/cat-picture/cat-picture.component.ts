@@ -1,7 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Post} from "../models/post";
 import {UsernameService} from "../username.service";
-import {post} from "selenium-webdriver/http";
 
 /**
  * The component for each cat picture

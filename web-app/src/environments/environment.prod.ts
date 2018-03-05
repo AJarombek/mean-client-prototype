@@ -7,6 +7,7 @@
 
 export const environment = {
     production: true,
-    apiUrl: 'localhost:3000/api/', // There is no prod endpoint at the moment
-    useMocks: false
+    apiUrl: 'http://localhost:3000/api/', // There is no prod endpoint at the moment
+    useMocks: false,
+    evt: "prod"
 };

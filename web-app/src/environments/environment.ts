@@ -6,5 +6,6 @@
 export const environment = {
     production: false,
     apiUrl: null,
-    useMocks: true
+    useMocks: true,
+    evt: "default"
 };

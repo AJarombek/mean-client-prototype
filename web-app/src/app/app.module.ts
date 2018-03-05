@@ -38,7 +38,8 @@ export const routes: Routes = [
     {path: '**', redirectTo: ''}
 ];
 
-const useMocks: boolean = environment.useMocks;
+// Display the environment information
+console.info(`Environment: ${JSON.stringify(environment)}`);
 
 /**
  * @NgModule configures an Angular module, helping to organize the application into components

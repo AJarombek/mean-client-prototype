@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {appConfig} from "./app.config";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
 import {Auth} from "./auth";
 import * as moment from "moment";
+import {environment} from "../environments/environment";
 
 /**
  * Service for authenticating users and setting up / taking down user sessions
@@ -17,8 +17,6 @@ export class AuthenticationService {
 
   private SECOND = 'second';
 
-  private loginUrl = '/auth/login';
-
   constructor(private http: HttpClient, private auth: Auth) { }
 
   /**
@@ -29,7 +27,7 @@ export class AuthenticationService {
    */
   login(username: string, password: string) {
     // http.post() returns an observable.  We use rxjs map() function to access the response
-    return this.http.post<any>(`${appConfig.apiDev}${this.loginUrl}`, { username: username, password: password})
+    return this.http.post<any>(`${environment.apiUrl}/auth/login`, { username: username, password: password})
         .map(jwtAuth => {
 
           // Add the JWT to localStorage
