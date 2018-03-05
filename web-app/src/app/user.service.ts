@@ -17,19 +17,19 @@ export class UserService implements HttpService {
     constructor(private http: HttpClient) { }
 
     getAll(): Observable<[User]> {
-        return this.http.get<[User]>(`${environment.apiUrl}/users`);
+        return this.http.get<[User]>(`/api/user`);
     }
 
     get(username: string): Observable<User> {
-        return this.http.get<User>(`${environment.apiUrl}/users/${username}`);
+        return this.http.get<User>(`/api/user/${username}`);
     }
 
     post(user: User): Observable<User> {
-        return this.http.post<User>(`${environment.apiUrl}/users`, user);
+        return this.http.post<User>(`/api/user`, user);
     }
 
     put(user: User): Observable<User> {
-        return this.http.put<User>(`${environment.apiUrl}/users/${user.username}`, user);
+        return this.http.put<User>(`/api/user/${user.username}`, user);
     }
 
     /**
@@ -42,6 +42,6 @@ export class UserService implements HttpService {
     }
 
     delete(username: string): Observable<any> {
-        return this.http.delete<any>(`${environment.apiUrl}/users/${username}`);
+        return this.http.delete<any>(`/api/user/${username}`);
     }
 }

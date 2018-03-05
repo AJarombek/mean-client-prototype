@@ -27,7 +27,7 @@ export class AuthenticationService {
    */
   login(username: string, password: string) {
     // http.post() returns an observable.  We use rxjs map() function to access the response
-    return this.http.post<any>(`${environment.apiUrl}/auth/login`, { username: username, password: password})
+    return this.http.post<any>(`/api/auth/login`, { username: username, password: password})
         .map(jwtAuth => {
 
           // Add the JWT to localStorage

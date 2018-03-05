@@ -53,8 +53,12 @@ export class LoginComponent {
             this.router.navigate(['/']);
             this.submitDone();
           }, error => {
-            this.loginError = `Failed to Sign In User: ${error}`;
-            this.submitDone();
+              if (error.error === `Not Authorized`) {
+                  this.loginError = `Failed to Sign In User: Invalid Credentials`;
+              } else {
+                  this.loginError = `Failed to Sign In User: Unexpected Server Error`;
+              }
+              this.submitDone();
           });
     } else {
       console.error(`${this.LOG_TAG} The form is not valid`);
