@@ -12,9 +12,13 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
+    private LOG_TAG: string = '[AuthInterceptor]';
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         const idToken = localStorage.getItem('id_token');
+
+        console.info(`${this.LOG_TAG} Auth Interceptor Called`);
 
         if (idToken) {
 

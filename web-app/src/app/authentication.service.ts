@@ -17,6 +17,8 @@ export class AuthenticationService {
 
   private SECOND = 'second';
 
+  private LOG_TAG: string = '[Authentication.Service]';
+
   constructor(private http: HttpClient, private auth: Auth) { }
 
   /**
@@ -37,7 +39,8 @@ export class AuthenticationService {
             this.auth.username = username;
 
             // Get the time that the JWT expires by adding the current time and the expires in time
-            const expiresAt: moment.Moment = moment().add(jwtAuth.expires, this.SECOND);
+              console.info("Expires: " + jwtAuth.expiresIn);
+            const expiresAt: moment.Moment = moment().add(this.SECOND, jwtAuth.expiresIn);
 
             localStorage.setItem('id_token', jwtAuth.idToken);
             localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
@@ -68,7 +71,12 @@ export class AuthenticationService {
      * @returns {boolean}
      */
   isLoggedIn() {
-      return moment().isBefore(this.getExpiration());
+      const loggedIn: boolean = moment().isBefore(this.getExpiration());
+      console.info(this.getExpiration());
+      console.info(moment().valueOf());
+      console.info(`${this.LOG_TAG} Is the user logged in: ${loggedIn}`);
+
+      return loggedIn;
   }
 
     /**

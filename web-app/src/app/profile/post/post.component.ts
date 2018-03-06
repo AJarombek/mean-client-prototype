@@ -21,8 +21,7 @@ import {noWhitespaceValidator} from "../../shared/no-whitespace.validator";
 @Component({
     selector: 'app-post',
     templateUrl: './post.component.html',
-    styleUrls: ['./post.component.scss'],
-    providers: [{provide: PostService, useClass: MockPostService}]
+    styleUrls: ['./post.component.scss']
 })
 export class PostComponent implements OnInit {
 
@@ -81,10 +80,6 @@ export class PostComponent implements OnInit {
         });
     }
 
-    debug(input: any) {
-        console.info(input);
-    }
-
     /**
      * Called when the post component is first initialized
      */
@@ -132,7 +127,10 @@ export class PostComponent implements OnInit {
      * Called when the picture is submitted and we are ready to create a new post
      */
     onSubmit() {
-        console.info(`Submitting Post: ${JSON.stringify(this.newPost)}`);
+        // Attach the picture to the new post
+        this.newPost.pictureData = this.file.src;
+
+        console.info(`${this.LOG_TAG} Submitting Post: ${JSON.stringify(this.newPost)}`);
         this.inProgressPicture = true;
         this.submitText = "Submitting...";
 
@@ -142,7 +140,16 @@ export class PostComponent implements OnInit {
             this.uploadCompleted = true;
             this.reset();
         }, err => {
-            this.postPictureError = "Failed to Upload Picture to Server";
+            console.error(`${this.LOG_TAG} Error Uploading Post: ${JSON.stringify(err)}`);
+
+            if (err.status == '403') {
+                this.postPictureError = "Uploaded Picture too Large";
+            } else {
+                this.postPictureError = "Failed to Upload Picture to Server";
+            }
+
+            this.inProgressPicture = false;
+            this.submitText = "Submit";
         });
     }
 

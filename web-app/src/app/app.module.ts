@@ -11,7 +11,7 @@ import {PostService} from "./post.service";
 import {MockPostService} from "./mock/mock-post.service";
 import {AuthenticationService} from "./authentication.service";
 import {MockAuthenticationService} from "./mock/mock-authentication.service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "./auth";
 import {UserService} from "./user.service";
@@ -22,6 +22,7 @@ import {UsernameService} from "./username.service";
 import {SharedModule} from "./shared/shared.module";
 import {environment} from "../environments/environment";
 import {MockUserService} from "./mock/mock-user.service";
+import {AuthInterceptor} from "./auth-interceptor";
 
 /**
  * The main module for the application
@@ -68,6 +69,11 @@ console.info(`Environment: ${JSON.stringify(environment)}`);
       SharedModule
   ],
   providers: [
+      {
+          provide: HTTP_INTERCEPTORS,
+          useClass: AuthInterceptor,
+          multi: true // Add this AuthInterceptor provider to HTTP_INTERCEPTORS instead of overriding it
+      },
       {
           provide: PostService,
           useFactory: (httpClient: HttpClient) => {
