@@ -63,7 +63,7 @@ export class AppComponent implements OnInit, OnDestroy {
      * Logs out a user
      */
     logout() {
-        this.authService.logout();
+        AuthenticationService.logout();
     }
 
     /**

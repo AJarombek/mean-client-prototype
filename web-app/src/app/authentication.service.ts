@@ -17,7 +17,7 @@ export class AuthenticationService {
 
   private SECOND = 'second';
 
-  private LOG_TAG: string = '[Authentication.Service]';
+  private static LOG_TAG: string = '[Authentication.Service]';
 
   constructor(private http: HttpClient, private auth: Auth) { }
 
@@ -35,15 +35,13 @@ export class AuthenticationService {
           // Add the JWT to localStorage
           // This is to create a session that will keep the user logged in.  LocalStorage items have no expiration date
           if (jwtAuth) {
-            this.auth.isAuthenticated = true;
-            this.auth.username = username;
 
             // Get the time that the JWT expires by adding the current time and the expires in time
-              console.info("Expires: " + jwtAuth.expiresIn);
             const expiresAt: moment.Moment = moment().add(this.SECOND, jwtAuth.expiresIn);
 
             localStorage.setItem('id_token', jwtAuth.idToken);
             localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+            localStorage.setItem('username', username);
 
             return new Observable(data => {
                 data.next('Signed In!');
@@ -59,22 +57,23 @@ export class AuthenticationService {
   /**
    * Log out the current user by removing the session from LocalStorage
    */
-  logout() {
+  static logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
-    this.auth.isAuthenticated = false;
-    this.auth.username = null;
+    localStorage.removeItem('username');
   }
 
     /**
      * Determine if the user is logged in based on the JWT expiration date
      * @returns {boolean}
      */
-  isLoggedIn() {
+  static isLoggedIn() {
       const loggedIn: boolean = moment().isBefore(this.getExpiration());
-      console.info(this.getExpiration());
-      console.info(moment().valueOf());
-      console.info(`${this.LOG_TAG} Is the user logged in: ${loggedIn}`);
+      console.debug(`${AuthenticationService.LOG_TAG} Is the user logged in: ${loggedIn}`);
+
+      if (!loggedIn && localStorage.getItem('id_token')) {
+          AuthenticationService.logout()
+      }
 
       return loggedIn;
   }
@@ -83,7 +82,7 @@ export class AuthenticationService {
      * Get the expiration date of the JWT session from localStorage
      * @returns {moment.Moment}
      */
-  getExpiration(): moment.Moment {
+  static getExpiration(): moment.Moment {
       const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
       return moment(expiresAt);
   }

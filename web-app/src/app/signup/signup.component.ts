@@ -4,6 +4,8 @@ import {Router} from "@angular/router";
 import {Auth} from "../auth";
 import {AuthenticationService} from "../authentication.service";
 import {noWhitespaceValidator} from "../shared/no-whitespace.validator";
+import {UserService} from "../user.service";
+import {User} from "../models/user";
 
 /**
  * Component for signing up users
@@ -27,10 +29,13 @@ export class SignupComponent {
     public formModel: FormGroup;
     public signupError: string = null;
 
+    private LOG_TAG: string = '[Signup.Component]';
+
     constructor(private fb: FormBuilder,
               private router: Router,
               public auth: Auth,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private userService: UserService) {
 
         this.formModel = fb.group({
             'username': ['', [Validators.required, Validators.maxLength(15),
@@ -52,13 +57,39 @@ export class SignupComponent {
         this.inProgress = true;
         this.submitText = 'Signing Up...';
         console.info('Signing Up');
-        setTimeout(() => {
+
+        const username: string = this.formModel.value.username;
+        const password: string = this.formModel.value.pwGroup.password;
+
+        const newUser: User = new User(username,
+            this.formModel.value.first,
+            this.formModel.value.last,
+            0, password);
+
+        console.info(`${this.LOG_TAG} Creating New User: ${newUser}`);
+
+        // First attempt to create the new user
+        this.userService.post(newUser).subscribe(() => {
+            console.info(`${this.LOG_TAG} Successfully Created a New User`);
+
+            // If the user is successfully created, log them in and redirect to the home page
+            this.authService.login(username, password).subscribe(() => {
+                this.router.navigate(['/']);
+                this.submitDone();
+            }, error => {
+                console.error(`${this.LOG_TAG} Unexpected Error Logging In New User: ${username}`);
+                this.router.navigate(['/login']);
+                this.submitDone();
+            });
+
+        }, error => {
+            console.error(`${this.LOG_TAG} Error Creating a New User: ${error}`);
             this.submitDone();
-        }, 2000);
+        });
     }
 
     logout() {
-        this.authService.logout();
+        AuthenticationService.logout();
     }
 
     private submitDone() {

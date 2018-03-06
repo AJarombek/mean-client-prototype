@@ -39,7 +39,7 @@
 
       <div formGroupName="pwGroup">
         <div>
-          <input type="text" formControlName="password" maxlength="63" placeholder="Password"><br>
+          <input type="password" formControlName="password" maxlength="63" placeholder="Password"><br>
           <span [hidden]="!formModel.hasError('required', ['pwGroup', 'password'])
                           || !formModel.get(['pwGroup', 'password']).dirty">
             Password is Required

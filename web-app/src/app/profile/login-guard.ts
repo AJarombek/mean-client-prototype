@@ -22,7 +22,7 @@ export class LoginGuard implements CanActivate {
 
     private isLoggedIn(state: RouterStateSnapshot): boolean {
 
-        if (this.authService.isLoggedIn()) {
+        if (AuthenticationService.isLoggedIn()) {
             return true;
         }
 

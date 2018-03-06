@@ -66,7 +66,7 @@ export class LoginComponent {
   }
 
   logout() {
-      this.authService.logout();
+      AuthenticationService.logout();
   }
 
   private submitDone() {

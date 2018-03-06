@@ -1,4 +1,5 @@
 import {Injectable} from "@angular/core";
+import {AuthenticationService} from "./authentication.service";
 
 /**
  * A class to hold authentication values to be used throughout the application
@@ -8,25 +9,21 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class Auth {
-    private _isAuthenticated: boolean = false;
-    private _username: string = null;
     private LOG_TAG: string = '[Auth]';
 
     get isAuthenticated(): boolean {
-        return this._isAuthenticated;
+        return AuthenticationService.isLoggedIn();
     }
 
     set isAuthenticated(val: boolean) {
-        console.info(`${this.LOG_TAG} Setting 'isAuthenticated' to ${val}`);
-        this._isAuthenticated = val;
+        console.info(`${this.LOG_TAG} No Setting Allowed!`);
     }
 
     get username(): string {
-        return this._username;
+        return localStorage.getItem('username');
     }
 
     set username(val: string) {
-        console.info(`${this.LOG_TAG} Setting 'username' to ${val}`);
-        this._username = val;
+        console.info(`${this.LOG_TAG} No Setting Allowed!`);
     }
 }

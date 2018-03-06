@@ -51,4 +51,14 @@ export class MockAuthenticationService {
         this.auth.isAuthenticated = false;
         this.auth.username = null;
     }
+
+    /**
+     * Returns where the user is logged in or not based on whether the local storage has a user value
+     * @returns {string | null}
+     */
+    static isLoggedIn(): boolean {
+        // The unary negate operator '!' coerces a value to a boolean, so a double negation returns the correct boolean
+        // Source: You Don't Know JavaScript: Types & Grammar (p. 83)
+        return !!localStorage.getItem('user');
+    }
 }
