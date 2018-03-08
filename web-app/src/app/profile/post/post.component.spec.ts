@@ -7,6 +7,8 @@ import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "../../auth";
 import {Router} from "@angular/router";
 import {LifecycleService} from "../../shared/lifecycle.service";
+import {PostService} from "../../post.service";
+import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('PostComponent', () => {
   let component: PostComponent;
@@ -23,7 +25,10 @@ describe('PostComponent', () => {
             ReactiveFormsModule,
             Validators,
             Auth,
-            LifecycleService
+            LifecycleService,
+            PostService,
+            HttpClient,
+            HttpHandler
         ]
     })
     .compileComponents();

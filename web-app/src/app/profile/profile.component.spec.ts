@@ -5,6 +5,8 @@ import {ProfileService} from "../profile.service";
 import {MockUserService} from "../mock/mock-user.service";
 import {LoadedService} from "../loaded.service";
 import {ImageUploadModule} from "angular2-image-upload";
+import {UserService} from "../user.service";
+import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -18,6 +20,9 @@ describe('ProfileComponent', () => {
           ProfileService,
           MockUserService,
           LoadedService,
+          UserService,
+          HttpClient,
+          HttpHandler
       ]
     })
     .compileComponents();

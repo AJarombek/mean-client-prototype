@@ -21,7 +21,7 @@ export class HomeComponent {
   constructor(private postService: PostService) {
 
     // Subscribe to the Observable that getPosts() returns ans when the value arrives give it to the posts variable
-    postService.getPosts().subscribe(data => {
+    postService.getAll().subscribe(data => {
 
       console.info(data);
       this.posts = data;

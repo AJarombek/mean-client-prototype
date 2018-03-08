@@ -3,7 +3,6 @@ import {Post} from "./models/post";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {HttpService} from "./http.service";
-import {environment} from "../environments/environment";
 
 /**
  * Service for meow cat posts

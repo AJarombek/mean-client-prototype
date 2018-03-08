@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import 'rxjs/add/operator/map';
 import {Observable} from "rxjs/Observable";
-import {Auth} from "./auth";
 import * as moment from "moment";
-import {environment} from "../environments/environment";
 
 /**
  * Service for authenticating users and setting up / taking down user sessions
@@ -19,7 +17,7 @@ export class AuthenticationService {
 
   private static LOG_TAG: string = '[Authentication.Service]';
 
-  constructor(private http: HttpClient, private auth: Auth) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * Login a user and create a new session

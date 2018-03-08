@@ -13,7 +13,7 @@ import {AuthenticationService} from "./authentication.service";
 import {MockAuthenticationService} from "./mock/mock-authentication.service";
 import {PostService} from "./post.service";
 import {MockPostService} from "./mock/mock-post.service";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Auth} from "./auth";
 import {UserService} from "./user.service";
@@ -22,6 +22,7 @@ import {ProfileService} from "./profile.service";
 import {MockUserService} from "./mock/mock-user.service";
 import {LoadedService} from "./loaded.service";
 import {UsernameService} from "./username.service";
+import {AuthInterceptor} from "./auth-interceptor";
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -46,6 +47,7 @@ describe('AppComponent', () => {
           ],
           providers: [
               {provide: APP_BASE_HREF, useValue: '/'},
+              {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
               PostService,
               MockPostService,
               AuthenticationService,

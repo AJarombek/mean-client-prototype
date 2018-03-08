@@ -102,7 +102,7 @@ console.info(`Environment: ${JSON.stringify(environment)}`);
               if (environment.useMocks) {
                   return new MockAuthenticationService(auth);
               } else {
-                  return new AuthenticationService(httpClient, auth);
+                  return new AuthenticationService(httpClient);
               }
           },
           deps: [Auth, HttpClient]

@@ -62,3 +62,6 @@ npm install moment --save
 # to the backend.  We use it to avoid CORS errors (Cross-Origin Resource Sharing).
 # https://juristr.com/blog/2016/11/configure-proxy-api-angular-cli/
 ng serve --proxy-config proxy.config.json
+
+# Perform a test that will close after the test is over.  Also report code coverage statistics
+ng test --single-run --watch=false --code-coverage -sm=false
