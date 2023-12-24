@@ -1,9 +1,8 @@
 # mean-client-prototype
 
-[![Build Status](https://travis-ci.org/AJarombek/mean-client-prototype.svg?branch=master)](https://travis-ci.org/AJarombek/mean-client-prototype)
-[![Coverage Status](https://coveralls.io/repos/github/AJarombek/mean-client-prototype/badge.svg?branch=master)](https://coveralls.io/github/AJarombek/mean-client-prototype?branch=master)
-[![Maintainability](https://api.codeclimate.com/v1/badges/84ffadb1af4927de2564/maintainability)](https://codeclimate.com/github/AJarombek/mean-client-prototype/maintainability)
-[![dependencies Status](https://david-dm.org/AJarombek/mean-client-prototype/status.svg?path=web-app)](https://david-dm.org/AJarombek/mean-client-prototype?path=web-app)
+![Maintained Label](https://img.shields.io/badge/Maintained-No-red?style=for-the-badge)
+![Deprecated Label](https://img.shields.io/badge/Deprecated-Yes-lightgray?style=for-the-badge)
+![Archived Label](https://img.shields.io/badge/Archived-Yes-lightgray?style=for-the-badge)
 
 This is a prototype that uses the Angular 5 framework for the front-end and Node.js for the back-end.  MongoDB is used for 
 the database.
